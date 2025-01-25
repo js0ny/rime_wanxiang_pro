@@ -446,6 +446,68 @@ algebra_zrm:
     - xform/^ch/Ⓘ/
     - xform/^zh/Ⓥ/
     - xlit/ⓆⓌⓇⓉⓎⓊⒾⓄⓅⓈⒹⒻⒼⒽⓂⒿⒸⓀⓁⓏⓍⓋⒷⓃ/qwrtyuiopsdfghmjcklzxvbn/
+algebra_zrm: 
+  __append:
+    - xform/^ēr/eQ/
+    - xform/^ér/eK/
+    - xform/^ěr/eU/
+    - xform/^èr/eH/
+    - xform/^er/eQ/
+    - xform/^(ā|á|ǎ|à)([ioun])/a$1$2/
+    - xform/^(ō|ó|ǒ|ò)([ioun])/o$1$2/
+    - xform/^(ē|é|ě|è)([ioun])/e$1$2/
+    - xform/^(ā|á|ǎ|à)(ng)/a$1$2/
+    - xform/^(ō|ó|ǒ|ò)(ng)/o$1$2/
+    - xform/^(ē|é|ě|è)(ng)/e$1$2/
+    - xform/^(ā|á|ǎ|à)/a$1/
+    - xform/^(ō|ó|ǒ|ò)/o$1/
+    - xform/^(ē|é|ě|è)/e$1/
+    - xform/^([jqxy])u/$1ü/
+    - xform/^([jqxy])ū/$1ǖ/
+    - xform/^([jqxy])ú/$1ǘ/
+    - xform/^([jqxy])ǔ/$1ǚ/
+    - xform/^([jqxy])ù/$1ǜ/
+    - xform/^a(;.*)$/aā$1/
+    - xform/^o(;.*)$/oō$1/
+    - xform/^e(;.*)$/eē$1/
+    - xform/^ǹg/eèng/
+    - xform/^ňg/eěng/
+    - xform/^ńg/eéng/
+    - xform/^ng/eeng/
+    - xform/^ǹ/eèn/
+    - xform/^ň/eěn/
+    - xform/^ń/eén/
+    - xform/^n/een/
+    - xform/^sh/U/
+    - xform/^ch/I/
+    - xform/^zh/V/
+    - xform/^(.)(iáo|iǎng|uǎng|ang|āng|ue|uē|üe|ǖe|ǎi|á)(;.*)$/$1U$3/
+    - xform/^(.)(iàng|iǒng|uàng|ēn|en|īng|ing|é|ó)(;.*)$/$1E$3/
+    - xform/^(.)(iǎn|iōng|iong|uǎi|uò|ǎng|ō|o)(;.*)$/$1P$3/
+    - xform/^(.)(uāng|uang|ong|ǐng|ìng|uí|áng)(;.*)$/$1W$3/
+    - xform/^(.)(uǎn|uái||uā|ua|én|uō|uo|ié|ǚ)(;.*)$/$1S$3/
+    - xform/^(.)(uán|ài|ěn|èn|uě|ǚe|ǎn|ǔn|iù)(;.*)$/$1O$3/
+    - xform/^(.)(uān|uan|àng|ái|iā|ia|uè|üè)(;.*)$/$1D$3/
+    - xform/^(.)(iáng|áo|ué|üé|ēi|ei|à|è|ǒ)(;.*)$/$1I$3/
+    - xform/^(.)(uāi|uai|uà|uǎ|ūn|un|ò|ǐ)(;.*)$/$1G$3/
+    - xform/^(.)(éng|èng|uài|èi|uì|ǜ|ún)(;.*)$/$1F$3/
+    - xform/^(.)(ióng|ōng|ong|án|iē|ie)(;.*)$/$1K$3/
+    - xform/^(.)(iào|iǎo|uǒ|uó|a|ā|ě|ú)(;.*)$/$1L$3/
+    - xform/^(.)(uàn|ēng|eng|iá|ín|iě)(;.*)$/$1C$3/
+    - xform/^(.)(iān|ian|òu|éi|ùn|ē|e)(;.*)$/$1R$3/
+    - xform/^(.)(iāng|iang|ěng|òng)(;.*)$/$1Y$3/
+    - xform/^(.)(iao|iāo|ǔ|ǎ|iú|ǘ)(;.*)$/$1M$3/
+    - xform/^(.)(iǎ|íng|ān|an|ǒng)(;.*)$/$1N$3/
+    - xform/^(.)(iòng|īn|in|ǖ|ù)(;.*)$/$1H$3/
+    - xform/^(.)(ǎo|ià|ǐn|ōu|ou)(;.*)$/$1X$3/
+    - xform/^(.)(óng|àn|ěi|ī|i)(;.*)$/$1J$3/
+    - xform/^(.)(ián|ào|ìn|uǐ)(;.*)$/$1V$3/
+    - xform/^(.)(uáng|āi|ai|í)(;.*)$/$1B$3/
+    - xform/^(.)(ǒu|īu|iu|ǐu)(;.*)$/$1Z$3/
+    - xform/^(.)(uá|uī|ui|ì)(;.*)$/$1T$3/
+    - xform/^(.)(ū|u|óu|iàn)(;.*)$/$1A$3/
+    - xform/^(.)(āo|ao|iè)(;.*)$/$1Q$3/
+    - xlit/QWERTYUIOPASDFGHMJCKLZXVBN/qwertyuiopasdfghmjcklzxvbn/
 
 algebra_flypy: 
   __append:
