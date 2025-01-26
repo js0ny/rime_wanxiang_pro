@@ -3,7 +3,7 @@
 #本方案匹配词库解码顺序为：全拼拼音；墨奇;鹤形;自然码;简单鹤;仓颉首末;虎码首末;五笔前2;汉心码；
 #############DIY你想要的方案组合,试试搭配一个自然码+墨奇辅助的方案吧！###########################
 set_shuru_schema:         #配置此项就是选择什么输入法,同时拆分反查和中英文混输也将匹配该输入方案
-  __include: algebra_zrm  #可选解码规则有   algebra_pinyin, algebra_zrm, algebra_zrlong, algebra_flypy, algebra_sogou, algebra_mspy  选择一个填入
+  __include: 自然码  #可选解码规则有   全拼, 自然码, 自然龙, 小鹤双拼, 搜狗双拼, 微软双拼  选择一个填入
 set_algebra_fuzhu:        #配置此项就是选择什么辅助码
   __include: fuzhu_zrm   #可选辅助码有：fuzhu_kong，fuzhu_moqi, fuzhu_zrm, fuzhu_flypy, fuzhu_tiger, fuzhu_cj, fuzhu_wubi, fuzhu_jdh, fuzhu_hanxin 选择一个填入
 set_cn_en:                #中英混输
@@ -403,13 +403,13 @@ speller:
 #      - mohuyin             #模糊音选择性开启
       - set_algebra_fuzhu    #辅助码部分
 ###############################以下是拼写运算规则中全拼转双拼码以及形码的过程，按照不同的方案规则划分段落###########################
-algebra_pinyin: 
+全拼: 
   __append: 
     - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
     - xform/ń|ň|ǹ/en/ 
     - xform/ńg|ňg|ǹg/en/
 
-algebra_zrm: 
+自然码: 
   __append:
     - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
     - xform/ń|ň|ǹ/en/ 
@@ -445,7 +445,7 @@ algebra_zrm:
     - xform/^ch/Ⓘ/
     - xform/^zh/Ⓥ/
     - xlit/ⓆⓌⓇⓉⓎⓊⒾⓄⓅⓈⒹⒻⒼⒽⓂⒿⒸⓀⓁⓏⓍⓋⒷⓃ/qwrtyuiopsdfghmjcklzxvbn/
-algebra_zrlong: 
+自然龙:    #原作者项目地址： https://github.com/rimeinn/rime-zrlong
   __append:
     - xform/^ēr/eQ/
     - xform/^ér/eK/
@@ -461,11 +461,11 @@ algebra_zrlong:
     - xform/^(ā|á|ǎ|à)/a$1/
     - xform/^(ō|ó|ǒ|ò)/o$1/
     - xform/^(ē|é|ě|è)/e$1/
-    - xform/^([jqxy])u/$1ü/
-    - xform/^([jqxy])ū/$1ǖ/
-    - xform/^([jqxy])ú/$1ǘ/
-    - xform/^([jqxy])ǔ/$1ǚ/
-    - xform/^([jqxy])ù/$1ǜ/
+    - xform/^([jqxy])u(;.*)/$1ü$2/
+    - xform/^([jqxy])ū(;.*)/$1ǖ$2/
+    - xform/^([jqxy])ú(;.*)/$1ǘ$2/
+    - xform/^([jqxy])ǔ(;.*)/$1ǚ$2/
+    - xform/^([jqxy])ù(;.*)/$1ǜ$2/
     - xform/^a(;.*)$/aā$1/
     - xform/^o(;.*)$/oō$1/
     - xform/^e(;.*)$/eē$1/
@@ -502,13 +502,13 @@ algebra_zrlong:
     - xform/^(.)(óng|àn|ěi|ī|i)(;.*)$/$1J$3/
     - xform/^(.)(ián|ào|ìn|uǐ)(;.*)$/$1V$3/
     - xform/^(.)(uáng|āi|ai|í)(;.*)$/$1B$3/
-    - xform/^(.)(ǒu|īu|iu|ǐu)(;.*)$/$1Z$3/
+    - xform/^(.)(ǒu|iū|iǔ|iu)(;.*)$/$1Z$3/
     - xform/^(.)(uá|uī|ui|ì)(;.*)$/$1T$3/
     - xform/^(.)(ū|u|óu|iàn)(;.*)$/$1A$3/
     - xform/^(.)(āo|ao|iè)(;.*)$/$1Q$3/
     - xlit/QWERTYUIOPASDFGHMJCKLZXVBN/qwertyuiopasdfghmjcklzxvbn/
 
-algebra_flypy: 
+小鹤双拼: 
   __append:
     - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
     - xform/ń|ň|ǹ/en/ 
@@ -545,7 +545,7 @@ algebra_flypy:
     - xform/^zh/Ⓥ/
     - xlit/ⓆⓌⓇⓉⓎⓊⒾⓄⓅⓈⒹⒻⒼⒽⒿⓀⓁⓏⓍⒸⓋⒷⓃⓂ/qwrtyuiopsdfghjklzxcvbnm/
 
-algebra_mspy: 
+微软双拼: 
   __append:
     - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
     - xform/ń|ň|ǹ/en/ 
@@ -585,7 +585,7 @@ algebra_mspy:
     - xform/^zh/Ⓥ/
     - xlit/ⓆⓌⓇⓉⓎⓊⒾⓄⓅⓈⒹⒻⒼⒽⓂⒿⒸⓀⓁⓏⓍⓋⒷⓃ/qwrtyuiopsdfghmjcklzxvbn/
 
-algebra_sogou: 
+搜狗双拼: 
   __append:
     - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
     - xform/ń|ň|ǹ/en/ 
