@@ -289,7 +289,6 @@ sort: by_weight
 大安	dà;ar;un;ad;xx;kk;md;dd;an; ān;bn;bn;bn;iy;jv;wb;pv;gn;	601
 大埔	dà;ar;un;ad;xx;kk;md;dd;an; bù;tf;tf;tf;gh;gb;gn;fg;tf;	647
 大厂	dà;ar;un;ad;xx;kk;md;dd;an; chǎng;ap;ap;ap;rr;mh;xc;dg;ap;	685
-大城	dà;ar;un;ad;xx;kk;md;dd;an; chéng;ti;ti;ti;gh;gs;ga;fd;tg;	755
 达川	dá;zd;zd;zd;xq;yk,xk;mu;dp;zd; chuān;pl;pl;pa;up;ll;oc;kt;pa;	409
 大村	dà;ar;un;ad;xx;kk;md;dd;an; cūn;mc;mc;mc;wk;di;ek;sf;lc;	529
 大东	dà;ar;un;ad;xx;kk;md;dd;an; dōng;ax;ad;ad,qx;di,ai;kd;ry;ai;ad;	638
@@ -337,6 +336,7 @@ sort: by_weight
 大竹	dà;ar;un;ad;xx;kk;md;dd;an; zhú;gg;pl,gg;gg;nn;hh;ru;tt;pd;	534
 达孜	dá;zd;zd;zd;xq;yk,xk;mu;dp;zd; zī;zw;zw;wz,zw;aj;nk;hh;bt;zw;	421
 大足	dà;ar;un;ad;xx;kk;md;dd;an; zú;kz;kr;kv;gg;ro;pu;kh;kr;	550
+大城	dài;ar;un;ad;xx;kk;md;dd;an; chéng;ti;ti;ti;gh;gs;ga;fd;tg;	755
 岱山	dài;ru;re;ud;xp;ou;jv;wa;rs; shān;kl;lk;aa;pp;uu;vs;mm;aa;	465
 代县	dài;ry;ry;ry;xa;op;jp;wa;rg; xiàn;qs;qs;sq,qs;pp;bi;fk;eg;qv;	468
 岱岳	dài;ru;re;ud;xp;ou;jv;wa;rs; yuè;qu;qe;uq,qu;up;ou;tv;rg;qs;	416
@@ -1218,7 +1218,7 @@ sort: by_weight
 乐安	lè;px;pd;pd,px;ui;hd;by;qi;pd; ān;bn;bn;bn;iy;jv;wb;pv;gn;	514
 乐昌	lè;px;pd;pd,px;ui;hd;by;qi;pd; chāng;oo;oo;oo;vv;aa;oo;jj;oo;	458
 乐东	lè;px;pd;pd,px;ui;hd;by;qi;pd; dōng;ax;ad;ad,qx;di,ai;kd;ry;ai;ad;	470
-乐都	lè;px;pd;pd,px;ui;hd;by;qi;pd; dōu;le;le;ev;gb;jl;qt;ft;ue;	502
+乐都	lè;px;pd;pd,px;ui;hd;by;qi;pd; dū;le;le;ev;gb;jl;qt;ft;ue;	502
 乐陵	lè;px;pd;pd,px;ui;hd;by;qi;pd; líng;ew;ew;el,ew;bj;ne;th;bf;ew;	481
 乐平	lè;px;pd;pd,px;ui;hd;by;qi;pd; píng;au;au;aa,gb;ds;mj;eh;gu;au;	544
 乐山	lè;px;pd;pd,px;ui;hd;by;qi;pd; shān;kl;lk;aa;pp;uu;vs;mm;aa;	650
@@ -1503,8 +1503,8 @@ sort: by_weight
 玛曲	mǎ;wm;wm;wm;az;mm;nn;gc;wm; qū;kc;la;aa,oa;vp,pd;tw,xw;yq;ma;aa;	392
 马山	mǎ;va;va;aa,vh;zz;nm;nm;cn;va; shān;kl;lk;aa;pp;uu;vs;mm;aa;	729
 麻山	má;gm;gm;gl;dd;id,ic;zm;ys;gl; shān;kl;lk;aa;pp;uu;vs;mm;aa;	355
+马尾	mǎ;va;va;aa,vh;zz;nm;nm;cn;va; wěi;um;um;um;qr;su;cv;nt;um;	676
 麻阳	má;gm;gm;gl;dd;id,ic;zm;ys;gl; yáng;eo;eo;eo;bv;na;to;bj;eo;	430
-马尾	mǎ;va;va;aa,vh;zz;nm;nm;cn;va; yǐ;um;um;um;qr;su;cv;nt;um;	676
 麻章	má;gm;gm;gl;dd;id,ic;zm;ys;gl; zhāng;lu;lu;lz;cs;yj;xn;uj;lu;	350
 麦积	mài;fw;fw;fw;aj;qe;ah;gt;aw; jī;hv;hb;hv;uf;hc;xh;tk;hb;	491
 麦寮	mài;fw;fw;fw;aj;qe;ah;gt;aw; liáo;bx;bx;bl,bx;ii;jf;wy;pd;gx;	1
@@ -3399,8 +3399,6 @@ sort: by_weight
 达坂城	dá;zd;zd;zd;xq;yk,xk;mu;dp;zd; bǎn;ty;ty;tf;gl;ge;gr;fr;ty; chéng;ti;ti;ti;gh;gs;ga;fd;tg;	432
 大埔县	dà;ar;un;ad;xx;kk;md;dd;an; bù;tf;tf;tf;gh;gb;gn;fg;tf; xiàn;qs;qs;sq,qs;pp;bi;fk;eg;qv;	430
 大埔乡	dà;ar;un;ad;xx;kk;md;dd;an; bù;tf;tf;tf;gh;gb;gn;fg;tf; xiāng;vp;vp;ap,vp;ru;vh;ix;xt;vp;	1
-大城县	dà;ar;un;ad;xx;kk;md;dd;an; chéng;ti;ti;ti;gh;gs;ga;fd;tg; xiàn;qs;qs;sq,qs;pp;bi;fk;eg;qv;	365
-大城乡	dà;ar;un;ad;xx;kk;md;dd;an; chéng;ti;ti;ti;gh;gs;ga;fd;tg; xiāng;vp;vp;ap,vp;ru;vh;ix;xt;vp;	1
 达川区	dá;zd;zd;zd;xq;yk,xk;mu;dp;zd; chuān;pl;pl;pa;up;ll;oc;kt;pa; qū;kx;kx;ki;dr;sk;nb;aq;kx;	1
 大村乡	dà;ar;un;ad;xx;kk;md;dd;an; cūn;mc;mc;mc;wk;di;ek;sf;lc; xiāng;vp;vp;ap,vp;ru;vh;ix;xt;vp;	1
 大东区	dà;ar;un;ad;xx;kk;md;dd;an; dōng;ax;ad;ad,qx;di,ai;kd;ry;ai;ad; qū;kx;kx;ki;dr;sk;nb;aq;kx;	484
@@ -3453,6 +3451,8 @@ sort: by_weight
 大竹县	dà;ar;un;ad;xx;kk;md;dd;an; zhú;gg;pl,gg;gg;nn;hh;ru;tt;pd; xiàn;qs;qs;sq,qs;pp;bi;fk;eg;qv;	412
 达孜区	dá;zd;zd;zd;xq;yk,xk;mu;dp;zd; zī;zw;zw;wz,zw;aj;nk;hh;bt;zw; qū;kx;kx;ki;dr;sk;nb;aq;kx;	1
 大足区	dà;ar;un;ad;xx;kk;md;dd;an; zú;kz;kr;kv;gg;ro;pu;kh;kr; qū;kx;kx;ki;dr;sk;nb;aq;kx;	1
+大城县	dài;ar;un;ad;xx;kk;md;dd;an; chéng;ti;ti;ti;gh;gs;ga;fd;tg; xiàn;qs;qs;sq,qs;pp;bi;fk;eg;qv;	365
+大城乡	dài;ar;un;ad;xx;kk;md;dd;an; chéng;ti;ti;ti;gh;gs;ga;fd;tg; xiāng;vp;vp;ap,vp;ru;vh;ix;xt;vp;	1
 岱山县	dài;ru;re;ud;xp;ou;jv;wa;rs; shān;kl;lk;aa;pp;uu;vs;mm;aa; xiàn;qs;qs;sq,qs;pp;bi;fk;eg;qv;	365
 岱岳区	dài;ru;re;ud;xp;ou;jv;wa;rs; yuè;qu;qe;uq,qu;up;ou;tv;rg;qs; qū;kx;kx;ki;dr;sk;nb;aq;kx;	384
 丹巴县	dān;kd;pa;pd;oi,oz,ud,uz,od;by;mz;my;pa; bā;sl;sl,vv;ag,kg,vg;tt;au;mb;cn;vv; xiàn;qs;qs;sq,qs;pp;bi;fk;eg;qv;	396
@@ -4354,7 +4354,7 @@ sort: by_weight
 乐亭县	lào;px;pd;pd,px;ui;hd;by;qi;pd; tíng;wd;wd;wd,db,dd;ij;yn,xn;ga;yp;wd; xiàn;qs;qs;sq,qs;pp;bi;fk;eg;qv;	402
 乐安县	lè;px;pd;pd,px;ui;hd;by;qi;pd; ān;bn;bn;bn;iy;jv;wb;pv;gn; xiàn;qs;qs;sq,qs;pp;bi;fk;eg;qv;	382
 乐昌市	lè;px;pd;pd,px;ui;hd;by;qi;pd; chāng;oo;oo;oo;vv;aa;oo;jj;oo; shì;wj;wj;wj;iy;yb;zr;ym;wj;	349
-乐都区	lè;px;pd;pd,px;ui;hd;by;qi;pd; dōu;le;le;ev;gb;jl;qt;ft;ue; qū;kx;kx;ki;dr;sk;nb;aq;kx;	1
+乐都区	lè;px;pd;pd,px;ui;hd;by;qi;pd; dū;le;le;ev;gb;jl;qt;ft;ue; qū;kx;kx;ki;dr;sk;nb;aq;kx;	1
 乐陵市	lè;px;pd;pd,px;ui;hd;by;qi;pd; líng;ew;ew;el,ew;bj;ne;th;bf;ew; shì;wj;wj;wj;iy;yb;zr;ym;wj;	371
 乐平市	lè;px;pd;pd,px;ui;hd;by;qi;pd; píng;au;au;aa,gb;ds;mj;eh;gu;au; shì;wj;wj;wj;iy;yb;zr;ym;wj;	370
 乐山市	lè;px;pd;pd,px;ui;hd;by;qi;pd; shān;kl;lk;aa;pp;uu;vs;mm;aa; shì;wj;wj;wj;iy;yb;zr;ym;wj;	521
@@ -4646,7 +4646,7 @@ sort: by_weight
 玛曲县	mǎ;wm;wm;wm;az;mm;nn;gc;wm; qū;kc;la;aa,oa;vp,pd;tw,xw;yq;ma;aa; xiàn;qs;qs;sq,qs;pp;bi;fk;eg;qv;	297
 麻山区	má;gm;gm;gl;dd;id,ic;zm;ys;gl; shān;kl;lk;aa;pp;uu;vs;mm;aa; qū;kx;kx;ki;dr;sk;nb;aq;kx;	164
 马山县	mǎ;va;va;aa,vh;zz;nm;nm;cn;va; shān;kl;lk;aa;pp;uu;vs;mm;aa; xiàn;qs;qs;sq,qs;pp;bi;fk;eg;qv;	392
-马尾区	mǎ;va;va;aa,vh;zz;nm;nm;cn;va; yǐ;um;um;um;qr;su;cv;nt;um; qū;kx;kx;ki;dr;sk;nb;aq;kx;	425
+马尾区	mǎ;va;va;aa,vh;zz;nm;nm;cn;va; wěi;um;um;um;qr;su;cv;nt;um; qū;kx;kx;ki;dr;sk;nb;aq;kx;	425
 麻章区	má;gm;gm;gl;dd;id,ic;zm;ys;gl; zhāng;lu;lu;lz;cs;yj;xn;uj;lu; qū;kx;kx;ki;dr;sk;nb;aq;kx;	317
 麦盖提	mài;fw;fw;fw;aj;qe;ah;gt;aw; gài;ym;ym;my,ym;fa;tt;ga;ug;em; tí;fz;fr;fu;je;qo;ut;rj;fr;	390
 麦积区	mài;fw;fw;fw;aj;qe;ah;gt;aw; jī;hv;hb;hv;uf;hc;xh;tk;hb; qū;kx;kx;ki;dr;sk;nb;aq;kx;	1
