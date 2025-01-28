@@ -77,10 +77,10 @@ conf:
 
 style:
   color_scheme: default #默认配色方案
-  keyboard_height: 260 #锁定键盘高度，避免切换时键盘高度变化而造成闪烁
+  keyboard_height: 250 #锁定键盘高度，避免切换时键盘高度变化而造成闪烁
   keyboard_height_land: 200 #锁定横屏下键盘高度，避免切换时键盘高度变化而造成闪烁
   horizontal: true #水平模式。改变方向键的功能 （true：方向键适配横排候选；false：方向键适配竖排候选）
-  keyboard_padding: 6 #竖屏模式下，屏幕左右两侧与键盘的距离（曲面屏减少误触）
+  keyboard_padding: 8 #竖屏模式下，屏幕左右两侧与键盘的距离（曲面屏减少误触）
   keyboard_padding_left: 0 #竖屏屏模式下，左手键盘布局，屏幕左侧与键盘的距离
   keyboard_padding_right: 40 #竖屏屏模式下，左手键盘布局，屏幕右侧与键盘的距离
   keyboard_padding_bottom: 5 #竖屏模式下，屏幕下边缘与键盘的距离（避免误触发全面屏手势）
@@ -3143,83 +3143,79 @@ preset_keyboards:
 #      - {click: num9}
 #      - {click: num0}
       # 第 1 行
-      - { click: 'q', long_click: '!', swipe_down: 1, __include: styl/key }
-      - { click: 'w', long_click: '@', swipe_down: 2, __include: styl/key }
-      - { click: 'e', long_click: '#', swipe_down: 3, __include: styl/key }
+      - { click: 'q', long_click: '1', __include: styl/key }
+      - { click: 'w', long_click: '2', __include: styl/key }
+      - { click: 'e', long_click: '3', __include: styl/key }
       - {
           click: 'r',
-          long_click: '$',
-          swipe_down: 4,
-          hint: 4,
+          long_click: '4',
           __include: styl/key,
         }
-      - { click: 't', long_click: '%', swipe_down: 5, __include: styl/key }
-      - { click: 'y', long_click: '^', swipe_down: 6, __include: styl/key }
+      - { click: 't', long_click: '5', __include: styl/key }
+      - { click: 'y', long_click: '6', __include: styl/key }
       - {
           click: 'u',
-          long_click: '&',
-          swipe_down: 7,
-          hint: 7,
+          long_click: '7',
           __include: styl/key,
         }
-      - { click: 'i', long_click: '*', swipe_down: 8, __include: styl/key }
-      - { click: 'o', long_click: '"', swipe_down: 9, __include: styl/key }
-      - { click: 'p', long_click: "danyinhao", swipe_down: 0, __include: styl/key }
+      - { click: 'i', long_click: '8', __include: styl/key }
+      - { click: 'o', long_click: '9', __include: styl/key }
+      - { click: 'p', long_click: "0", __include: styl/key }
       # 第 2 行
       - { width: 5 }
       - { click: 'a', long_click: select_all, __include: styl/key }
       - {
           click: 's',
-          long_click: '<',
+          long_click: 'shenglue',
           __include: styl/key,
         }
       - {
           click: 'd',
-          long_click: '>',
+          long_click: 'pozhe',
           __include: styl/key,
         }
       - {
           click: 'f',
-          long_click: '{',
+          long_click: '-',
           __include: styl/key,
         }
       - {
           click: 'g',
-          long_click: '}',
+          long_click: '=',
           swipe_down: kb_edit,
           hint: '<ɪ>',
           __include: styl/key,
         }
       - {
           click: 'h',
-          long_click: 'zkhz',
+          long_click: '[',
           __include: styl/key,
         }
       - {
           click: 'j',
-          long_click: 'zkhy',
+          long_click: ']',
           __include: styl/key,
         }
-      - { click: 'k', long_click: '(', __include: styl/key }
-      - { click: 'l', long_click: ")", __include: styl/key }
+      - { click: 'k', long_click: ';', __include: styl/key }
+      - { click: 'l', long_click: "'", __include: styl/key }
       # 第 3 行
       - { click: Shift_L, composing: split_word, width: 15 }   
 #      - { click: Shift_L, width: 15 }
-      - { click: 'z',long_click: 'fanyinhao', __include: styl/key }
+      - { click: 'z',long_click: 'rev', __include: styl/key }
       - { click: 'x', long_click: cut, __include: styl/key }
       - { click: 'c', long_click: copy, __include: styl/key }
       - { click: 'v', long_click: paste, __include: styl/key }
       - {
           click: 'b',
-          long_click: 'xiegang',
+          long_click: '/',
           __include: styl/key,
         }
       - {
           click: 'n',
-          long_click: ':',
+          long_click: '\',
           __include: styl/key,
         }
-      - { click: 'm', long_click: 'fenhao', __include: styl/key }
+      - { click: 'm', long_click: '`', __include: styl/key }
       - { click: BS, width: 15, 
           swipe_up: 'Escape',
         }
@@ -3227,12 +3223,13 @@ preset_keyboards:
       - {
           click: Keyboard_symbols,
           long_click: Color_switch,
+          composing: Tab,
           width: 11,
           __include: styl/off_key,
         }     
       - {
           click: Keyboard_number,
-          composing: Tab,
+          composing: "xiegang",
           width: 12,      
           __include: styl/off_key,
           __patch: conf/key_height_last,
@@ -3255,7 +3252,7 @@ preset_keyboards:
           hilited_key_back_color: hilited_space_back_color,
         }        
       - {
-          click: '.',
+          click: 'juhao',
           label: ' 。',
           long_click: '?',
           width: 11,
@@ -3264,7 +3261,7 @@ preset_keyboards:
 
       - {
           click: 'Mode_switch',
-          composing: "xiegang",
+          composing: CommitScriptText,
           width: 11,
           __include: styl/off_key,  
         }
@@ -3527,6 +3524,8 @@ preset_keys:
   Right: { label: '→', send: Right }
   select_all: { label: '☑', send: Control+a }
   Clear: { label: 清除, text: '{Control+a}{BackSpace}' } #全选并删除
+  
+  rev: { label: '↶', send: Control+z }
   cut: { label: '✂', send: Control+x }
   cut_all: { label: 全挪, text: '{Control+a}{Control+x}' } #全选并剪切
   copy: { label: '❐', send: Control+c }
@@ -3545,7 +3544,7 @@ preset_keys:
   F4: { label: 方案选单, send: F4 }
   BackToPreviousSyllable: { label: 删音节, send: Control+BackSpace }
   CommitRawInput: { label: 编码, send: Control+Return }
-  CommitScriptText: { label: 编码, send: Shift+Return }
+  CommitScriptText: { label: ✍, send: Shift+Return }
   CommitComment: { label: 编码, send: Control+Shift+Return }
   DeleteCandidate: { label: 删词, send: Control+Delete }
   # rime状态
@@ -3586,6 +3585,7 @@ preset_keys:
   Keyboard_symbols: { label: '۞', send: Eisu_toggle, select: symbols }
   kb_edit: { label: '编辑', send: Eisu_toggle, select: edit }
   kb_func: { label: '❖', send: Eisu_toggle, select: func }
+  shengdiao: { label: '声调', send: Shift_R+Return }
   # 自定义按键
   BS: { label: '⌫', repeatable: true, send: BackSpace }
 #  select_second: { label: '.', send: . }
@@ -3593,6 +3593,7 @@ preset_keys:
 
 #符号键盘区，解决中文状态下shift锁定导致的符号映射发生变化的问题,由于已经合理布置需要的符号，没必要这种变化
   xiegang: { label: "/", text: "/" }
+  fanxiegang: { label: '\', text: '\' }  
   jianhao: { label: "-", text: "-" }
   fanyinhao: { label: "`", text: "`" }
   dengyu: { label: "=", text: "=" }
@@ -3602,6 +3603,9 @@ preset_keys:
   juhao: { label: ".", text: "." }
   zkhz: { label: "[", text: "[" }
   zkhy: { label: "]", text: "]" }
+  xiahuaxian: { label: "_", text: "_" }
+  shenglue: { label: "…", text: "……" }
+  pozhe: { label: "—", text: "——" }
 #顶部数字排映射  
   num1: { label: 1, send: 1 }
   num2: { label: 2, send: 2 }
