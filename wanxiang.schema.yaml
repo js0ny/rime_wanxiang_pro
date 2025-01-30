@@ -415,7 +415,7 @@ speller:
   __append:
     - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
     - xform/ń|ň|ǹ/en/ 
-    - xform/\bng\b/eng/
+    - xform/^ng(;.*)/eng$1/
     - xform/ńg|ňg|ǹg/eng/
     - derive/^([jqxy])u(;.*)$/$1v$2/
     - derive/^([aoe])([ioun])(;.*)$/$1$1$2$3/
@@ -478,7 +478,6 @@ speller:
     - xform/^ǹ/eèn/
     - xform/^ň/eěn/
     - xform/^ń/eén/
-    - xform/^n(;.*)/een$1/
     - xform/^sh/U/
     - xform/^ch/I/
     - xform/^zh/V/
@@ -514,7 +513,7 @@ speller:
   __append:
     - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
     - xform/ń|ň|ǹ/en/ 
-    - xform/\bng\b/eng/
+    - xform/^ng(;.*)/eng$1/
     - xform/ńg|ňg|ǹg/eng/
     - derive/^([jqxy])u(;.*)$/$1v$2/
     - derive/^([aoe])([ioun])(;.*)$/$1$1$2$3/
@@ -551,7 +550,7 @@ speller:
   __append:
     - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
     - xform/ń|ň|ǹ/en/ 
-    - xform/\bng\b/eng/
+    - xform/^ng(;.*)/eng$1/
     - xform/ńg|ňg|ǹg/eng/
     - derive/^([jqxy])u(;.*)$/$1v$2/
     - derive/^([aoe].*)(;.*)$/o$1$2/
@@ -591,7 +590,7 @@ speller:
   __append:
     - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
     - xform/ń|ň|ǹ/en/ 
-    - xform/\bng\b/eng/
+    - xform/^ng(;.*)/eng$1/
     - xform/ńg|ňg|ǹg/eng/
     - derive/^([jqxy])u(;.*)$/$1v$2/
     - derive/^([aoe].*)(;.*)$/o$1$2/

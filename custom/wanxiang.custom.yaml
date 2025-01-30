@@ -221,7 +221,7 @@ patch:  #注意本示例采用了全局替换的写法
 #下面这部分为主要拼写运算部分，主文件中获取
       - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
       - xform/ń|ň|ǹ/en/ 
-      - xform/\bng\b/eng/
+      - xform/^ng(;.*)/eng$1/
       - xform/ńg|ňg|ǹg/eng/
       - derive/^([jqxy])u(;.*)$/$1v$2/
       - derive/^([aoe])([ioun])(;.*)$/$1$1$2$3/
