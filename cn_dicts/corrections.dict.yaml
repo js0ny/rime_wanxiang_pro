@@ -4,7 +4,7 @@
 #错音错字对照表
 ---
 name: corrections
-version: "2025-01-31 01:01"
+version: "2025-01-31 15:48"
 sort: by_weight
 ...
 膻中	shan;od;oa;od;ld;bm;vf;ey;od; zhong;kl;ll;aa,ka;op;ll;dg;k,kh;aa;	364	膻(dàn)中
@@ -22,7 +22,7 @@ sort: by_weight
 给予	gei;sk;sk;sh;eo;vr;id;xw;sk; yu;sl;sl;sa,aa;pp;nn;iv;cb;vv;	11349	jǐ yǔ
 厚朴	hou;iz;iz;iz;ra;md;xh;dj;iz; pu;mb;mb;mb;wh;dy;ey;sh;lb;	52	hòu pò
 馄饨	hun;ub;ub;uk;ga;np;qv;qn;ub; dun;ut;ut;ut;gr;nu;qs;qn;ut;	898	hún tun
-角色	jiao;dy;dl;dy;gi,gp;ng,nq;xt;qe;ey; se;db;db;db;gt;nu;xm;qc;eb;	20102	jué sè
+角色	jiao;dy;dl,dy;dy;gi,gp;ng,nq;xt;qe;ey; se;db;db;db;gt;nu;xm;qc;eb;	20102	jué sè
 结扎	jie;sk;sk;sj;eo;vr;id;xf;sk; zha;fv;fv;fg;jr;qu,xu;ua;rn;fv;	126	jié zā
 钜惠	jù;jj;jj;jj;dr;os;zn;qa;jj; huì;ix;ax;xh,hx;dn;jp;nh;gj;ax;	549	巨惠
 六安	liu;wb;wb;wb,dd,db;if;yc;al;uy;wb; an;bn;bn;bn;iy;jv;wb;pv;gn;	110	lù ān
@@ -44,7 +44,7 @@ sort: by_weight
 胴体	tong;ok;ok;ot;lo;br;vd;em;ok; ti;rb;rb;rb;xd;om;jf;ws;rb;	80	dòng tǐ
 荨麻	xun;cc;cc;cx;zk;ti,xi;lk;av;cc; ma;gm;gm;gl;dd;id,ic;zm;ys;gl;	71	qián má
 吱声	zhi;kv;ky;kv;ol;re;dc;kf;ky; sheng;tu;up;um;gp;gh;gc;fn;up;	217	zī shēng
-主角	zhu;wt;dw;dw;ig;yg;in;y,yg;wt; jiao;dy;dl;dy;gi,gp;ng,nq;xt;qe;ey;	24115	zhǔ jué
+主角	zhu;wt;dw;dw;ig;yg;in;y,yg;wt; jiao;dy;dl,dy;dy;gi,gp;ng,nq;xt;qe;ey;	24115	zhǔ jué
 比萨饼	bǐ;bb;bb;bb;aa;pp;vv;xx;bb; sà;ci;ci;ci;zu;th;lx;ab;ci; bǐng;uk;uk;ub;gp;nt;ql;qn;uk;	23
 脖颈儿	bo;oz;oz;ob,oz;la;bd;vh;ef;oz; jing;jy;vr;yg;rm;no;rw;ca;vr; er;pv;pv;pg;kk;lu;pe;qt;pv;	10	bó gěng er
 草薙剑	cao;cu;cu;cz;zs;tj;ln;aj;cu; zhi;cv;cf;cv;za;tg;lu;at;cv; jian;qd,rd;rd;da,dq;ei;on;jp;wg;rd;	17	cǎo tì jiàn

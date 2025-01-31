@@ -4,7 +4,7 @@
 #------二级行政区划------
 ---
 name: division
-version: "2025-01-31 01:01"
+version: "2025-01-31 15:48"
 sort: by_weight
 ...
 阿坝	ā;ek;ek;ek;bj;nr;tz;bs;ek; bà;tb;tr;tb;gm;go;go;fm;tr;	601
@@ -1655,7 +1655,7 @@ sort: by_weight
 嫩江	nèn;nw;nw;ni,nw;yj;vk;bh;vg;nw; jiāng;dg;dg;dg;kp;em;ku;ia;dg;	497
 尼玛	ní;ub;ub;ub;qa;sp;cv;nx;ub; mǎ;wm;wm;wm;az;mm;nn;gc;wm;	710
 尼木	ní;ub;ub;ub;qa;sp;cv;nx;ub; mù;ur;un;ad;ww;dd;em;ss;un;	415
-鸟松	niǎo;na;wd;na,pa;cc;pm;xn;qy;pa; sōng;mg;ms;mg;wp;di;ek;sw;lv;	416
+鸟松	niǎo;na;pa,wd;na,pa;cc;pm;xn;qy;pa; sōng;mg;ms;mg;wp;di;ek;sw;lv;	416
 聂荣	niè;ey;ey;eu;dl;se;qr;bc;ey; róng;cm;cm;cm,mb;zw;td,xd;le;ap;cl;	523
 宁安	níng;bd;bd;bd;ij;jn;wa;ps;gd; ān;bn;bn;bn;iy;jv;wb;pv;gn;	510
 宁波	níng;bd;bd;bd;ij;jn;wa;ps;gd; bō;dp;dy;dp;kl;ee;kr;ih;dy;	793
@@ -4799,7 +4799,7 @@ sort: by_weight
 尼玛县	ní;ub;ub;ub;qa;sp;cv;nx;ub; mǎ;wm;wm;wm;az;mm;nn;gc;wm; xiàn;qs;qs;sq,qs;pp;bi;fk;eg;qv;	322
 尼木县	ní;ub;ub;ub;qa;sp;cv;nx;ub; mù;ur;un;ad;ww;dd;em;ss;un; xiàn;qs;qs;sq,qs;pp;bi;fk;eg;qv;	376
 碾子山	niǎn;uy;un;uv;th;mv;mt;dn;uh; zǐ;la;va;aa,vh;aa;nd;hi;bb;va; shān;kl;lk;aa;pp;uu;vs;mm;aa;	1
-鸟松区	niǎo;na;wd;na,pa;cc;pm;xn;qy;pa; sōng;mg;ms;mg;wp;di;ek;sw;lv; qū;kx;kx;ki;dr;sk;nb;aq;kx;	1
+鸟松区	niǎo;na;pa,wd;na,pa;cc;pm;xn;qy;pa; sōng;mg;ms;mg;wp;di;ek;sw;lv; qū;kx;kx;ki;dr;sk;nb;aq;kx;	1
 聂拉木	niè;ey;ey;eu;dl;se;qr;bc;ey; lā;fl;fl;fl;jb;qt;ui;ru;fl; mù;ur;un;ad;ww;dd;em;ss;un;	403
 聂荣县	niè;ey;ey;eu;dl;se;qr;bc;ey; róng;cm;cm;cm,mb;zw;td,xd;le;ap;cl; xiàn;qs;qs;sq,qs;pp;bi;fk;eg;qv;	226
 宁安市	níng;bd;bd;bd;ij;jn;wa;ps;gd; ān;bn;bn;bn;iy;jv;wb;pv;gn; shì;wj;wj;wj;iy;yb;zr;ym;wj;	382
