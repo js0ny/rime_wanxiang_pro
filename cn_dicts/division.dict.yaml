@@ -4,7 +4,7 @@
 #------二级行政区划------
 ---
 name: division
-version: "2025-02-02 01:03"
+version: "2025-02-02 23:44"
 sort: by_weight
 ...
 阿坝	ā;ek;ek;ek;bj;nr;tz;bs;ek; bà;tb;tr;tb;gm;go;go;fm;tr;	601
@@ -219,6 +219,7 @@ sort: by_weight
 巢湖	cháo;vg;vg;ig;;vd;oe;vj;vg; hú;do;do;dh;kl;eb;kv;id;do;	587
 潮南	cháo;do;do;di;kl;eb;kv;if;do; nán;ug;ug;ua,uy;ss;jj;ng;fm;uu;	433
 朝天	cháo;uo;uo;ou,uo;sl;jb;nv;fj;uo; tiān;ad;ad;ad;ue;mk;fm;gd;ad;	676
+朝阳	cháo;uo;uo;ou,uo;sl;jb;nv;fj;uo; yáng;eo;eo;eo;bv;na;to;bj;eo;	767
 潮阳	cháo;do;do;di;kl;eb;kv;if;do; yáng;eo;eo;eo;bv;na;to;bj;eo;	529
 潮州	cháo;do;do;di;kl;eb;kv;if;do; zhōu;dl;dl;id,da;hp;il;oo;yt;da;	682
 车城	chē;au;al;aa;tt;kq;yc;lg;aa; chéng;ti;ti;ti;gh;gs;ga;fd;tg;	569
@@ -2982,7 +2983,6 @@ sort: by_weight
 昭苏	zhāo;ok;ok;ov;vo;ar;od;jv;ok; sū;cb;cb;cb;zf;tc;lh;al;cb;	458
 昭通	zhāo;ok;ok;ov;vo;ar;od;jv;ok; tōng;zy;zy;zy;pq;yb;ku;ce;zy;	571
 赵县	zhào;tx;tx;zi;qy;gk;pb;fh;tx; xiàn;qs;qs;sq,qs;pp;bi;fk;eg;qv;	445
-朝阳	zhāo;uo;uo;ou,uo;sl;jb;nv;fj;uo; yáng;eo;eo;eo;bv;na;to;bj;eo;	767
 昭阳	zhāo;ok;ok;ov;vo;ar;od;jv;ok; yáng;eo;eo;eo;bv;na;to;bj;eo;	479
 招远	zhāo;fk;fk;fv;jo;qr;ud;rv;fk; yuǎn;zy;ze;zy;uq;yu;mu;fq;ze;	491
 肇源	zhào;hy;hy;hy,yw;qp;hq,iq;mb;yn;ha; yuán;dx;dx;dy;ki;ef;ky;id;dx;	382
@@ -3328,7 +3328,8 @@ sort: by_weight
 朝天区	cháo;uo;uo;ou,uo;sl;jb;nv;fj;uo; tiān;ad;ad;ad;ue;mk;fm;gd;ad; qū;kx;kx;ki;dr;sk;nb;aq;kx;	320
 朝阳区	cháo;uo;uo;ou,uo;sl;jb;nv;fj;uo; yáng;eo;eo;eo;bv;na;to;bj;eo; qū;kx;kx;ki;dr;sk;nb;aq;kx;	687
 潮阳区	cháo;do;do;di;kl;eb;kv;if;do; yáng;eo;eo;eo;bv;na;to;bj;eo; qū;kx;kx;ki;dr;sk;nb;aq;kx;	443
-朝阳县	chao;uo;uo;ou,uo;sl;jb;nv;fj;uo; yáng;eo;eo;eo;bv;na;to;bj;eo; xiàn;qs;qs;sq,qs;pp;bi;fk;eg;qv;	383
+朝阳市	cháo;uo;uo;ou,uo;sl;jb;nv;fj;uo; yáng;eo;eo;eo;bv;na;to;bj;eo; shì;wj;wj;wj;iy;yb;zr;ym;wj;	466
+朝阳县	cháo;uo;uo;ou,uo;sl;jb;nv;fj;uo; yáng;eo;eo;eo;bv;na;to;bj;eo; xiàn;qs;qs;sq,qs;pp;bi;fk;eg;qv;	383
 潮州市	cháo;do;do;di;kl;eb;kv;if;do; zhōu;dl;dl;id,da;hp;il;oo;yt;da; shì;wj;wj;wj;iy;yb;zr;ym;wj;	495
 潮州镇	cháo;do;do;di;kl;eb;kv;if;do; zhōu;dl;dl;id,da;hp;il;oo;yt;da; zhèn;jb;jb;jv;df;oc;zh;qf;jb;	1
 车城乡	chē;au;al;aa;tt;kq;yc;lg;aa; chéng;ti;ti;ti;gh;gs;ga;fd;tg; xiāng;vp;vp;ap,vp;ru;vh;ix;xt;vp;	1
@@ -6163,7 +6164,6 @@ sort: by_weight
 昭苏县	zhāo;ok;ok;ov;vo;ar;od;jv;ok; sū;cb;cb;cb;zf;tc;lh;al;cb; xiàn;qs;qs;sq,qs;pp;bi;fk;eg;qv;	353
 昭通市	zhāo;ok;ok;ov;vo;ar;od;jv;ok; tōng;zy;zy;zy;pq;yb;ku;ce;zy; shì;wj;wj;wj;iy;yb;zr;ym;wj;	495
 昭阳区	zhāo;ok;ok;ov;vo;ar;od;jv;ok; yáng;eo;eo;eo;bv;na;to;bj;eo; qū;kx;kx;ki;dr;sk;nb;aq;kx;	364
-朝阳市	zhāo;uo;uo;ou,uo;sl;jb;nv;fj;uo; yáng;eo;eo;eo;bv;na;to;bj;eo; shì;wj;wj;wj;iy;yb;zr;ym;wj;	466
 招远市	zhāo;fk;fk;fv;jo;qr;ud;rv;fk; yuǎn;zy;ze;zy;uq;yu;mu;fq;ze; shì;wj;wj;wj;iy;yb;zr;ym;wj;	378
 肇源县	zhào;hy;hy;hy,yw;qp;hq,iq;mb;yn;ha; yuán;dx;dx;dy;ki;ef;ky;id;dx; xiàn;qs;qs;sq,qs;pp;bi;fk;eg;qv;	346
 肇州县	zhào;hy;hy;hy,yw;qp;hq,iq;mb;yn;ha; zhōu;dl;dl;id,da;hp;il;oo;yt;da; xiàn;qs;qs;sq,qs;pp;bi;fk;eg;qv;	319
