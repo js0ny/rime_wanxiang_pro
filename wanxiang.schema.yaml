@@ -119,9 +119,7 @@ engine:
     - simplifier@mars                               #火星文
     - simplifier@chinese_english                    #中英翻译
     - lua_filter@*search@radical_pinyin             # 部件拆字辅码放在简繁转换之后
-#    - lua_filter@*is_in_user_dict                  # 根据是否在用户词典，在结尾加上一个星号 *
-#    - lua_filter@*cn_en_spacer                     #启用时中英混输为中英混输词条（cn_en.dict.yaml）自动增加空格，示例：`VIP中P` → `VIP 中 P`              
-#    - lua_filter@*en_spacer                        #启用时中文状态下输入英文单词后面自动追加空格
+    - lua_filter@*en_spacer                         #启用时中文状态下输入英文单词后面自动追加空格
     - lua_filter@*pro_comment_format                #超级注释模块，支持错词提示、辅助码显示，部件组字读音注释，支持个性化配置和关闭相应的功能，详情搜索pro_comment_format进行详细配置
     - simplifier@moqi_chaifen                       #墨奇拆分型辅助码查询，放在超级注释后面
     - simplifier@zrm_chaifen                        #自然码拆分型辅助码查询，放在超级注释后面
@@ -478,13 +476,14 @@ speller:
     - xform/^ǹ/eèn/
     - xform/^ň/eěn/
     - xform/^ń/eén/
+    - xform/^n(;.*)/een$1/
     - xform/^sh/U/
     - xform/^ch/I/
     - xform/^zh/V/
     - xform/^(.)(iáo|iǎng|uǎng|ang|āng|ue|uē|üe|ǖe|ǎi|á)(;.*)$/$1U$3/
     - xform/^(.)(iàng|iǒng|uàng|ēn|en|īng|ing|é|ó)(;.*)$/$1E$3/
     - xform/^(.)(iǎn|iōng|iong|uǎi|uò|ǎng|ō|o)(;.*)$/$1P$3/
-    - xform/^(.)(uāng|uang|ong|ǐng|ìng|uí|áng)(;.*)$/$1W$3/
+    - xform/^(.)(uāng|uang|ǐng|ìng|uí|áng)(;.*)$/$1W$3/
     - xform/^(.)(uǎn|uái||uā|ua|én|uō|uo|ié|ǚ)(;.*)$/$1S$3/
     - xform/^(.)(uán|ài|ěn|èn|uě|ǚe|ǎn|ǔn|iù)(;.*)$/$1O$3/
     - xform/^(.)(uān|uan|àng|ái|iā|ia|uè|üè)(;.*)$/$1D$3/
@@ -498,12 +497,12 @@ speller:
     - xform/^(.)(iāng|iang|ěng|òng)(;.*)$/$1Y$3/
     - xform/^(.)(iao|iāo|ǔ|ǎ|iú|ǘ)(;.*)$/$1M$3/
     - xform/^(.)(iǎ|íng|ān|an|ǒng)(;.*)$/$1N$3/
-    - xform/^(.)(iòng|īn|in|ǖ|ù)(;.*)$/$1H$3/
+    - xform/^(.)(iòng|īn|in|ǖ|ü|ù)(;.*)$/$1H$3/
     - xform/^(.)(ǎo|ià|ǐn|ōu|ou)(;.*)$/$1X$3/
     - xform/^(.)(óng|àn|ěi|ī|i)(;.*)$/$1J$3/
     - xform/^(.)(ián|ào|ìn|uǐ)(;.*)$/$1V$3/
     - xform/^(.)(uáng|āi|ai|í)(;.*)$/$1B$3/
-    - xform/^(.)(ǒu|iū|iǔ|iu)(;.*)$/$1Z$3/
+    - xform/^(.)(ǒu|iū|iu|iǔ)(;.*)$/$1Z$3/
     - xform/^(.)(uá|uī|ui|ì)(;.*)$/$1T$3/
     - xform/^(.)(ū|u|óu|iàn)(;.*)$/$1A$3/
     - xform/^(.)(āo|ao|iè)(;.*)$/$1Q$3/
