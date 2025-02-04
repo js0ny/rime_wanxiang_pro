@@ -4,9 +4,10 @@
 #错音错字对照表
 ---
 name: corrections
-version: "2025-02-04 15:24"
+version: "2025-02-05 00:07"
 sort: by_weight
 ...
+麻麻赖赖	má;gm;gm;gl;dd;id,ic;zm;ys;gl; má;gm;gm;gl;dd;id,ic;zm;ys;gl; lài;ub;ur;uf;dm;do;xo;gk;ur; lài;ub;ur;uf;dm;do;xo;gk;ur;	156	(网络语)
 毁人不倦	huǐ;ju;jy;jy,ug;sl;he;pr;va;jy; rén;pn;pn;pd;ee;oo;jr;w,ww;pn; bú;ab;ad;ad,ax;dh;mf;cb;i,gi;ad; juàn;rv;rv;rj;xt;ou;jz;wu;rv;	431	(歌曲名)
 满山遍野	mǎn;dl;dl;dl;ke;eb;km;ia;dl; shān;kl;lk;aa;pp;uu;vs;mm;aa; biàn;zc;zc;zb;qq;yb;mu;yn;zc; yě;ly;ll;ly,yl;vp;wn;di;jf;ly;	519	(漫)山遍野
 佛教胜地	fó;rf;rf;rf;xp;on;jt;wx;rf; jiào;lw;lw;wx;gj;jk;qh;ft;uw; shèng;ou;ou;ou;la;bm;vl;et;ou; dì;ty;ty;ty;gr,ga;gd;ge;f,fb;ty;	1	佛教(圣)地
@@ -29,7 +30,7 @@ sort: by_weight
 馄饨	hun;ub;ub;uk;ga;np;qv;qn;ub; dun;ut;ut;ut;gr;nu;qs;qn;ut;	898	hún tun
 角色	jiao;dy;dl,dy;dy;gi,gp;ng,nq;xt;qe;ey; se;db;db;db;gt;nu;xm;qc;eb;	20102	jué sè
 结扎	jie;sk;sk;sj;eo;vr;id;xf;sk; zha;fv;fv;fg;jr;qu,xu;ua;rn;fv;	126	jié zā
-钜惠	jù;jj;jj;jj;dr;os;zn;qa;jj; huì;ix;ax;xh,hx;dn;jp;nh;gj;ax;	549	巨惠
+钜惠	jù;jj;jj;jj;dr;os;zn;qa;jj; huì;ix;ax;xh,hx;dn;jp;nh;gj;ax;	549	(巨)惠
 六安	liu;wb;wb;wb,dd,db;if;yc;al;uy;wb; an;bn;bn;bn;iy;jv;wb;pv;gn;	110	lù ān
 埋怨	mai;tl;tl;tl;gg;gg;gd;fj;tl; yuan;xx;xx;xe,xy;fn;np;lh;qb;xx;	1138	mán yuàn
 模板	mo;md;md;mm;wx;dk;em;sa;ld; ban;my;my;mf;wl;de,xe;er;sr;ly;	14674	mú bǎn
