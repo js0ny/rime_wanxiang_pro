@@ -305,6 +305,7 @@ patch:
   #   half_shape 半角标点映射
   #   symbols    Rime 的预设配置是以 '/' 前缀开头输出一系列字符，自定义的 symbols_v.yaml 修改成了 'V' 开头。
   punctuator:
+    digit_separators: ":,."  #数字分隔符
     full_shape:
       __include: default:/punctuator/full_shape  # 从 default.yaml 导入配置
     half_shape:
