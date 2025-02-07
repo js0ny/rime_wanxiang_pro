@@ -103,13 +103,12 @@ patch:
     filters:
       - lua_filter@*chars_filter                      #字符集过滤
       - lua_filter@*cold_word_drop.filter
-      - lua_filter@*long_word_filter                  #长词优先      
       - lua_filter@*autocap_filter                    # 英文自动大写
-      - lua_filter@*pin_cand_filter                   # 置顶候选项（顺序要求：置顶候选项 > Emoji > 简繁切换）
       - lua_filter@*reduce_english_filter             # 降低部分英语单词在候选项的位置
       - reverse_lookup_filter@radical_reverse_lookup  # 部件拆字滤镜，放在pro_comment_format前面，进一步被超级注释处理以获得拼音编码+辅助码的提示
       - lua_filter@*pro_preedit_format                #输入码显示全拼并带上音调
       - simplifier@emoji                              # Emoji
+      - lua_filter@reduce_emoji_filter                #降低影子候选emoji位置
       - simplifier@traditionalize                     # 简繁切换
       - simplifier@mars                               #火星文
       - simplifier@chinese_english                    #中英翻译
@@ -140,18 +139,7 @@ patch:
   # Lua 配置：计算器触发关键字
   calculator:
     trigger: "V"
-  
-  # Lua 配置: 置顶候选项
-  # 注释太长了，请参考 pin_cand_filter.lua 开头的说明书。
-  pin_cand_filter:
-    # 格式：编码<Tab>字词1<Space>字词2……
 
-  
-  #Lua 配置:长词优先
-  long_word_filter:
-    count: 4
-    idx: 3
-  
   # Lua 配置: 降低部分英语单词在候选项的位置。
   # 详细介绍 https://dvel.me/posts/make-rime-en-better/#短单词置顶的问题
   # 正常情况： 输入 rug 得到 「1.rug 2.如果 …… 」

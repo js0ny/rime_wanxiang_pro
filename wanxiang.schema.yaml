@@ -108,13 +108,12 @@ engine:
   filters:
     - lua_filter@*chars_filter                      #字符集过滤
     - lua_filter@*cold_word_drop.filter
-    - lua_filter@*long_word_filter                  #长词优先      
     - lua_filter@*autocap_filter                    # 英文自动大写
-    - lua_filter@*pin_cand_filter                   # 置顶候选项（顺序要求：置顶候选项 > Emoji > 简繁切换）
     - lua_filter@*reduce_english_filter             # 降低部分英语单词在候选项的位置
     - reverse_lookup_filter@radical_reverse_lookup  # 部件拆字滤镜，放在pro_comment_format前面，进一步被超级注释处理以获得拼音编码+辅助码的提示
     - lua_filter@*pro_preedit_format                #输入码显示全拼并带上音调
     - simplifier@emoji                              # Emoji
+    - lua_filter@reduce_emoji_filter                #降低影子候选emoji位置
     - simplifier@traditionalize                     # 简繁切换
     - simplifier@mars                               #火星文
     - simplifier@chinese_english                    #中英翻译
@@ -141,19 +140,6 @@ lunar: lunar  # 农历： 二〇二三年冬月二十 癸卯年（兔）冬月�
 calculator:
   trigger: "V"
 
-# Lua 配置: 置顶候选项
-# 注释太长了，请参考 pin_cand_filter.lua 开头的说明书。
-pin_cand_filter:
-  # 格式：编码<Tab>字词1<Space>字词2……
-  - b	吧
-  - d	的
-  - l	了
-  - m	吗
-
-#Lua 配置:长词优先
-long_word_filter:
-  count: 4
-  idx: 3
 
 # Lua 配置: 降低部分英语单词在候选项的位置。
 # 详细介绍 https://dvel.me/posts/make-rime-en-better/#短单词置顶的问题
@@ -195,20 +181,14 @@ reduce_english_filter:
 translator:
   dictionary: wanxiang          # 挂载词库 wanxiang.dict.yaml
 #  prism: double_pinyin          # 多方案共用一个词库时，为避免冲突，需要用 prism 指定一个名字。
-  prioritize_quality: true  # 启用优先质量选项
   enable_completion: true  # 启用候选词补全
-#  punctuation_model: default  # 设置标点符号模型
-#  single_char_first: true  # 优先显示单个字符
-#  candidate_filter: "^(?!abc).*$"  # 过滤掉包含 "abc" 的候选词
 #  user_dict: zrm.userdb  # 用户词典的文件名称
 #  db_class: tabledb  #开启后就不会产生zrm.userdb这样的文件夹，会直接输出文本zrm.txt同时无法使用同步能力
   enable_user_dict: false # 是否开启自动调频
   disable_user_dict_for_patterns:
     - "^[a-z]{1,6}"    #基本的6码3字不调频
   enable_correction: false #是否开启自动纠错
-#  encode_commit_history: true   # 预留历史上屏自动编码成词
   initial_quality: 3       # 初始质量拼音的权重应该比英文大
-#  secondary_quality: 0.8  # 设置次要质量
   spelling_hints: 50             # 将注释以词典字符串形式完全暴露，通过pro_comment_format.lua完全接管，灵活配置。
   always_show_comments: true    # Rime 默认在 preedit 等于 comment 时取消显示 comment，这里强制一直显示，供pro_comment_format.lua做判断用。
   comment_format: {comment}  #将注释以词典字符串形式完全暴露，通过pro_comment_format.lua完全接管，灵活配置。
