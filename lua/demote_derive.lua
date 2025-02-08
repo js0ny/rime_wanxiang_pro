@@ -2,6 +2,7 @@
 --万象为了降低1位辅助码权重保证分词，提升2位辅助码权重为了4码高效，但是有些时候单字超越了词组，如自然码中：jmma 睑 剑麻，于是调序 剑麻 睑
 --abbrev下根据辅助码提权匹配编码的单字
 local M = {}
+
 function M.run_fuzhu(cand, env, initial_comment)
     local patterns = {
         tone = "([^;]*);",
@@ -90,7 +91,17 @@ function M.func(input, env)
 
     for _, cand in ipairs(single_char_cands) do
         local comment = get_comment(cand, env) -- **调用 `M.run_fuzhu()` 解析辅助码**
-        if comment == last_two_chars then
+        
+        -- **使用 `,` 逗号分割辅助码，并检查是否有一个片段匹配**
+        local matched = false
+        for segment in comment:gmatch("[^,]+") do
+            if segment == last_two_chars then
+                matched = true
+                break
+            end
+        end
+
+        if matched then
             moved_single = cand -- 记录这个单字
         else
             table.insert(reordered_singles, cand)
