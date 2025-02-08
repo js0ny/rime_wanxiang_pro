@@ -3,7 +3,7 @@
 --abbrev下根据辅助码提权匹配编码的单字
 local M = {}
 
--- 获取辅助码
+-- **获取辅助码**
 function M.run_fuzhu(cand, env, initial_comment)
     local patterns = {
         tone = "([^;]*);",
@@ -20,18 +20,18 @@ function M.run_fuzhu(cand, env, initial_comment)
     local pattern = patterns[env.settings.fuzhu_type]
     if not pattern then return {}, {} end  -- **返回两个空表**
 
-    local full_fuzhu_list = {}   -- 存储完整的辅助码片段
-    local first_fuzhu_list = {}  -- 存储每个片段的第一位
+    local full_fuzhu_list = {}   -- **存储完整的辅助码片段**
+    local first_fuzhu_list = {}  -- **存储每个片段的第一位**
 
     for segment in initial_comment:gmatch("[^%s]+") do
         local match = segment:match(pattern)
         if match then
-            -- 处理 `,` 分割的多个辅助码
+            -- **处理 `,` 分割的多个辅助码**
             for sub_match in match:gmatch("[^,]+") do
-                table.insert(full_fuzhu_list, sub_match) -- 存储完整辅助码
-                local first_char = sub_match:sub(1, 1)   -- 获取首字母
+                table.insert(full_fuzhu_list, sub_match) -- **存储完整辅助码**
+                local first_char = sub_match:sub(1, 1)   -- **获取首字母**
                 if first_char and first_char ~= "" then
-                    table.insert(first_fuzhu_list, first_char) -- 存储片段的第一位
+                    table.insert(first_fuzhu_list, first_char) -- **存储片段的第一位**
                 end
             end
         end
@@ -40,7 +40,7 @@ function M.run_fuzhu(cand, env, initial_comment)
     return full_fuzhu_list, first_fuzhu_list
 end
 
--- **初始化函数，确保 `env.settings` 先初始化**
+-- **初始化函数**
 function M.init(env)
     local config = env.engine.schema.config
     env.settings = {
@@ -48,40 +48,43 @@ function M.init(env)
     }
 end
 
+-- **判断是否为数字或字母**
+local function is_alnum(text)
+    return text:match("^[%w]+$") ~= nil
+end
+
+-- **主逻辑**
 function M.func(input, env)
     local context = env.engine.context
-    local input_code = context.input -- 获取输入码
+    local input_code = context.input -- **获取输入码**
     local input_len = utf8.len(input_code)
 
-    -- 只有当输入码长度为 3 或 4 时才处理
+    -- **只有当输入码长度为 3 或 4 时才处理**
     if input_len < 3 or input_len > 4 then
         for cand in input:iter() do
-            yield(cand) -- 直接按原顺序输出
+            yield(cand) -- **直接按原顺序输出**
         end
         return
     end
 
-    local single_char_cands = {}
-    local double_char_cands = {}
-    local others = {}
+    local single_char_cands = {} -- **存储单字候选**
+    local other_cands = {}  -- **存储其他所有候选词（包括长度 ≥ 2）**
 
     -- **获取输入码的最后 2 个字符**
     local last_two_chars = input_code:sub(-2)
     local last_one_char = input_code:sub(-1)
 
-    -- 读取所有候选词
+    -- **读取所有候选词**
     for cand in input:iter() do
         local len = utf8.len(cand.text)
-        if len == 2 then
-            table.insert(double_char_cands, cand)
-        elseif len == 1 then
-            table.insert(single_char_cands, cand)
+        if len == 1 and not is_alnum(cand.text) then
+            table.insert(single_char_cands, cand)  -- **存储单字（排除字母、数字）**
         else
-            table.insert(others, cand)
+            table.insert(other_cands, cand)  -- **存储所有非单字候选词**
         end
     end
 
-    -- 处理单字的排序逻辑
+    -- **处理单字的排序逻辑**
     local reordered_singles = {}
     local moved_singles = {}  -- **存储所有匹配的单字**
 
@@ -116,8 +119,8 @@ function M.func(input, env)
         end
     end
 
-    -- **先输出双字候选**
-    for _, cand in ipairs(double_char_cands) do
+    -- **先输出所有非单字候选词**
+    for _, cand in ipairs(other_cands) do
         yield(cand)
     end
 
@@ -126,13 +129,8 @@ function M.func(input, env)
         yield(cand)
     end
 
-    -- **然后输出剩余的单字**
+    -- **最后输出剩余的单字**
     for _, cand in ipairs(reordered_singles) do
-        yield(cand)
-    end
-
-    -- **最后输出剩余的候选词**
-    for _, cand in ipairs(others) do
         yield(cand)
     end
 end
