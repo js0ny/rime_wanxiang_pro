@@ -61,7 +61,7 @@ patch:
   # 输入引擎
   engine:
     processors:
-      - lua_processor@*select_character          # 以词定字，有了辅助码了，想开启可以注释掉
+      #- lua_processor@*select_character          # 以词定字，有了辅助码了，想开启可以注释掉
       - lua_processor@*cold_word_drop.processor
       - lua_processor@*quick_symbol_text    #快符引导以及重复上屏
       - lua_processor@*userdb_sync_delete   #通过输入 /del 触发,用于清理自定义同步目录下txt用户词典里被标记c<0的词条
@@ -103,6 +103,7 @@ patch:
     filters:
       - lua_filter@*chars_filter                      #字符集过滤
       - lua_filter@*cold_word_drop.filter
+      - lua_filter@*demote_derive                     #配合derive辅助码派生提权2字候选
       - lua_filter@*autocap_filter                    # 英文自动大写
       - lua_filter@*reduce_english_filter             # 降低部分英语单词在候选项的位置
       - reverse_lookup_filter@radical_reverse_lookup  # 部件拆字滤镜，放在pro_comment_format前面，进一步被超级注释处理以获得拼音编码+辅助码的提示
@@ -180,20 +181,14 @@ patch:
   translator:
     dictionary: wanxiang          # 挂载词库 wanxiang.dict.yaml
   #  prism: double_pinyin          # 多方案共用一个词库时，为避免冲突，需要用 prism 指定一个名字。
-    prioritize_quality: true  # 启用优先质量选项
     enable_completion: true  # 启用候选词补全
-  #  punctuation_model: default  # 设置标点符号模型
-  #  single_char_first: true  # 优先显示单个字符
-  #  candidate_filter: "^(?!abc).*$"  # 过滤掉包含 "abc" 的候选词
   #  user_dict: zrm.userdb  # 用户词典的文件名称
   #  db_class: tabledb  #开启后就不会产生zrm.userdb这样的文件夹，会直接输出文本zrm.txt同时无法使用同步能力
     enable_user_dict: false # 是否开启自动调频
     disable_user_dict_for_patterns:
       - "^[a-z]{1,6}"    #基本的6码3字不调频
     enable_correction: false #是否开启自动纠错
-  #  encode_commit_history: true   # 预留历史上屏自动编码成词
     initial_quality: 3       # 初始质量拼音的权重应该比英文大
-  #  secondary_quality: 0.8  # 设置次要质量
     spelling_hints: 50             # 将注释以词典字符串形式完全暴露，通过pro_comment_format.lua完全接管，灵活配置。
     always_show_comments: true    # Rime 默认在 preedit 等于 comment 时取消显示 comment，这里强制一直显示，供pro_comment_format.lua做判断用。
     comment_format: {comment}  #将注释以词典字符串形式完全暴露，通过pro_comment_format.lua完全接管，灵活配置。
@@ -384,54 +379,6 @@ patch:
     initials: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
     delimiter: " '"  # 第一位<空格>是拼音之间的分隔符；第二位<'>表示可以手动输入单引号来分割拼音。
     algebra:
-      __patch:
-        - set_shuru_schema     #拼音转双拼码具体段落下面去找
-  #以下是双拼运算
-      - derive/^(.+);.*$/$1/ # 纯双拼的情况
-  #分号后面第一组辅助码
-      - derive/^(.+);(\w)(\w).*$/$1$2/ # 双拼+一位辅助码的情况
-      - derive/^(.+);(\w)(\w).*$/$1[$2/ # 双拼+[一位辅助码的情况
-      - abbrev/^(.+);(\w)(\w).*$/$1$2$3/ # 双拼+2位辅助码的情况，abbrev类型不可以整句内输入2位辅助码，必须加/
-      - derive|^(.+);(\w)(\w).*$|$1$2$3/| # 整句模式下，输入syff/ 出单字 增强单字性能
-      - derive|^(.+);(\w)(\w).*$|$1$2$3o| # 整句模式下，输入syffo 出单字 增强单字性能
-  #分号后面第二组辅助码
-      - derive/^(.+);.*?,(\w\w).*$/$1$2/
-      - derive/^(.+);.*?,(\w)(\w).*$/$1[$2/
-      - abbrev/^(.+);.*?,(\w)(\w).*$/$1$2$3/
-      - derive|^(.+);.*?,(\w)(\w).*$|$1$2$3/|
-      - derive|^(.+);.*?,(\w)(\w).*$|$1$2$3o|
-  #分号后面第三组辅助码
-      - derive/^(.+);.*?,.*?,(\w\w).*$/$1$2/
-      - derive/^(.+);.*?,.*?,(\w)(\w).*$/$1[$2/
-      - abbrev/^(.+);.*?,.*?,(\w)(\w).*$/$1$2$3/
-      - derive|^(.+);.*?,.*?,(\w)(\w).*$|$1$2$3/|
-      - derive|^(.+);.*?,.*?,(\w)(\w).*$|$1$2$3o|
-  #分号后面第四组辅助码
-      - derive/^(.+);.*?,.*?,.*?,(\w)(\w).*$/$1$2/ 
-      - derive/^(.+);.*?,.*?,.*?,(\w)(\w).*$/$1[$2/
-      - abbrev/^(.+);.*?,.*?,.*?,(\w)(\w).*$/$1$2$3/
-      - derive|^(.+);.*?,.*?,.*?,(\w)(\w).*$|$1$2$3/|
-      - derive|^(.+);.*?,.*?,.*?,(\w)(\w).*$|$1$2$3o|
-  #特殊优化：部分音节字极少，几乎不参与构词，则提升对应四码字的优先级，仅对自然码双拼有效，其他双拼方案需作对应修改）
-      - derive/^(.+);(bd|dw|df|dw|yl|rw|fs|iw)$/$1$2/
-      - derive/^(.+);.*?,(bd|dw|df|dw|yl|rw|fs|iw)$/$1$2/
-      - derive/^(.+);.*?,.*?,(bd|dw|df|dw|yl|rw|fs|iw)$/$1$2/
-      - derive/^(.+);.*?,.*?,.*?,(bd|dw|df|dw|yl|rw|fs|iw)$/$1$2/
-
-
-
-
-
-
-  ###############################以下是拼写运算规则中全拼转双拼码以及形码的过程，按照不同的方案规则划分段落###########################
-  全拼: 
-    __append: 
-      - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
-      - xform/ń|ň|ǹ/en/ 
-      - xform/ńg|ňg|ǹg/en/
-  
-  自然码: 
-    __append:
       - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
       - xform/ń|ň|ǹ/en/ 
       - xform/^ng(;.*)/eng$1/
@@ -466,314 +413,40 @@ patch:
       - xform/^ch/Ⓘ/
       - xform/^zh/Ⓥ/
       - xlit/ⓆⓌⓇⓉⓎⓊⒾⓄⓅⓈⒹⒻⒼⒽⓂⒿⒸⓀⓁⓏⓍⓋⒷⓃ/qwrtyuiopsdfghmjcklzxvbn/
-  自然龙:    #原作者项目地址： https://github.com/rimeinn/rime-zrlong
-    __append:
-      - xform/^ēr/eQ/
-      - xform/^ér/eK/
-      - xform/^ěr/eU/
-      - xform/^èr/eH/
-      - xform/^er/eQ/
-      - xform/^(ā|á|ǎ|à)([ioun])/a$1$2/
-      - xform/^(ō|ó|ǒ|ò)([ioun])/o$1$2/
-      - xform/^(ē|é|ě|è)([ioun])/e$1$2/
-      - xform/^(ā|á|ǎ|à)(ng)/a$1$2/
-      - xform/^(ō|ó|ǒ|ò)(ng)/o$1$2/
-      - xform/^(ē|é|ě|è)(ng)/e$1$2/
-      - xform/^(ā|á|ǎ|à)/a$1/
-      - xform/^(ō|ó|ǒ|ò)/o$1/
-      - xform/^(ē|é|ě|è)/e$1/
-      - xform/^([jqxy])u(;.*)/$1ü$2/
-      - xform/^([jqxy])ū(;.*)/$1ǖ$2/
-      - xform/^([jqxy])ú(;.*)/$1ǘ$2/
-      - xform/^([jqxy])ǔ(;.*)/$1ǚ$2/
-      - xform/^([jqxy])ù(;.*)/$1ǜ$2/
-      - xform/^a(;.*)$/aā$1/
-      - xform/^o(;.*)$/oō$1/
-      - xform/^e(;.*)$/eē$1/
-      - xform/^ǹg/eèng/
-      - xform/^ňg/eěng/
-      - xform/^ńg/eéng/
-      - xform/^ng/eeng/
-      - xform/^ǹ/eèn/
-      - xform/^ň/eěn/
-      - xform/^ń/eén/
-      - xform/^n(;.*)/een$1/
-      - xform/^sh/U/
-      - xform/^ch/I/
-      - xform/^zh/V/
-      - xform/^(.)(iáo|iǎng|uǎng|ang|āng|ue|uē|üe|ǖe|ǎi|á)(;.*)$/$1U$3/
-      - xform/^(.)(iàng|iǒng|uàng|ēn|en|īng|ing|é|ó)(;.*)$/$1E$3/
-      - xform/^(.)(iǎn|iōng|iong|uǎi|uò|ǎng|ō|o)(;.*)$/$1P$3/
-      - xform/^(.)(uāng|uang|ǐng|ìng|uí|áng)(;.*)$/$1W$3/
-      - xform/^(.)(uǎn|uái||uā|ua|én|uō|uo|ié|ǚ)(;.*)$/$1S$3/
-      - xform/^(.)(uán|ài|ěn|èn|uě|ǚe|ǎn|ǔn|iù)(;.*)$/$1O$3/
-      - xform/^(.)(uān|uan|àng|ái|iā|ia|uè|üè)(;.*)$/$1D$3/
-      - xform/^(.)(iáng|áo|ué|üé|ēi|ei|à|è|ǒ)(;.*)$/$1I$3/
-      - xform/^(.)(uāi|uai|uà|uǎ|ūn|un|ò|ǐ)(;.*)$/$1G$3/
-      - xform/^(.)(éng|èng|uài|èi|uì|ǜ|ún)(;.*)$/$1F$3/
-      - xform/^(.)(ióng|ōng|ong|án|iē|ie)(;.*)$/$1K$3/
-      - xform/^(.)(iào|iǎo|uǒ|uó|a|ā|ě|ú)(;.*)$/$1L$3/
-      - xform/^(.)(uàn|ēng|eng|iá|ín|iě)(;.*)$/$1C$3/
-      - xform/^(.)(iān|ian|òu|éi|ùn|ē|e)(;.*)$/$1R$3/
-      - xform/^(.)(iāng|iang|ěng|òng)(;.*)$/$1Y$3/
-      - xform/^(.)(iao|iāo|ǔ|ǎ|iú|ǘ)(;.*)$/$1M$3/
-      - xform/^(.)(iǎ|íng|ān|an|ǒng)(;.*)$/$1N$3/
-      - xform/^(.)(iòng|īn|in|ǖ|ü|ù)(;.*)$/$1H$3/
-      - xform/^(.)(ǎo|ià|ǐn|ōu|ou)(;.*)$/$1X$3/
-      - xform/^(.)(óng|àn|ěi|ī|i)(;.*)$/$1J$3/
-      - xform/^(.)(ián|ào|ìn|uǐ)(;.*)$/$1V$3/
-      - xform/^(.)(uáng|āi|ai|í)(;.*)$/$1B$3/
-      - xform/^(.)(ǒu|iū|iu|iǔ)(;.*)$/$1Z$3/
-      - xform/^(.)(uá|uī|ui|ì)(;.*)$/$1T$3/
-      - xform/^(.)(ū|u|óu|iàn)(;.*)$/$1A$3/
-      - xform/^(.)(āo|ao|iè)(;.*)$/$1Q$3/
-      - xlit/QWERTYUIOPASDFGHMJCKLZXVBN/qwertyuiopasdfghmjcklzxvbn/
-  
-  小鹤双拼: 
-    __append:
-      - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
-      - xform/ń|ň|ǹ/en/ 
-      - xform/^ng(;.*)/eng$1/
-      - xform/ńg|ňg|ǹg/eng/
-      - derive/^([jqxy])u(;.*)$/$1v$2/
-      - derive/^([aoe])([ioun])(;.*)$/$1$1$2$3/
-      - xform/^([aoe])(ng)?(;.*)$/$1$1$2$3/
-      - xform/^(\w+?)iu(;.*)/$1Ⓠ$2/
-      - xform/^(\w+?)ei(;.*)/$1Ⓦ$2/
-      - xform/^(\w+?)uan(;.*)/$1Ⓡ$2/
-      - xform/^(\w+?)[uv]e(;.*)/$1Ⓣ$2/
-      - xform/^(\w+?)un(;.*)/$1Ⓨ$2/
-      - xform/^(\w+?)uo(;.*)/$1Ⓞ$2/
-      - xform/^(\w+?)ie(;.*)/$1Ⓟ$2/
-      - xform/^(\w+?)i?ong(;.*)/$1Ⓢ$2/
-      - xform/^(\w+?)ing(;.*)/$1Ⓚ$2/
-      - xform/^(\w+?)uai(;.*)/$1Ⓚ$2/
-      - xform/^(\w+?)ai(;.*)/$1Ⓓ$2/
-      - xform/^(\w+?)eng(;.*)/$1Ⓖ$2/
-      - xform/^(\w+?)en(;.*)/$1Ⓕ$2/
-      - xform/^(\w+?)[iu]ang(;.*)/$1Ⓛ$2/
-      - xform/^(\w+?)ang(;.*)/$1Ⓗ$2/
-      - xform/^(\w+?)ian(;.*)/$1Ⓜ$2/
-      - xform/^(\w+?)an(;.*)/$1Ⓙ$2/
-      - xform/^(\w+?)ou(;.*)/$1Ⓩ$2/
-      - xform/^(\w+?)iao(;.*)/$1Ⓝ$2/
-      - xform/^(\w+?)[iu]a(;.*)/$1Ⓧ$2/
-      - xform/^(\w+?)ao(;.*)/$1Ⓒ$2/
-      - xform/^(\w+?)ui(;.*)/$1Ⓥ$2/
-      - xform/^(\w+?)in(;.*)/$1Ⓑ$2/
-      - xform/^sh/Ⓤ/
-      - xform/^ch/Ⓘ/
-      - xform/^zh/Ⓥ/
-      - xlit/ⓆⓌⓇⓉⓎⓊⒾⓄⓅⓈⒹⒻⒼⒽⒿⓀⓁⓏⓍⒸⓋⒷⓃⓂ/qwrtyuiopsdfghjklzxcvbnm/
-  
-  微软双拼: 
-    __append:
-      - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
-      - xform/ń|ň|ǹ/en/ 
-      - xform/^ng(;.*)/eng$1/
-      - xform/ńg|ňg|ǹg/eng/
-      - derive/^([jqxy])u(;.*)$/$1v$2/
-      - derive/^([aoe].*)(;.*)$/o$1$2/
-      - xform/^([ae])(.*)(;.*)$/$1$1$2$3/
-      - xform/^(\w+?)iu(;.*)/$1Ⓠ$2/
-      - xform/^(\w+?)er(;.*)/$1Ⓡ$2/
-      - xform/^(\w+?)[uv]an(;.*)/$1Ⓡ$2/
-      - xform/^(\w+?)[uv]e(;.*)/$1Ⓣ$2/
-      - xform/^(\w+?)v(;.*)/$1Ⓨ$2/
-      - xform/^(\w+?)uai(;.*)/$1Ⓨ$2/
-      - xform/^(\w+?)uo(;.*)/$1Ⓞ$2/
-      - xform/^(\w+?)[uv]n(;.*)/$1Ⓟ$2/
-      - xform/^(\w+?)i?ong(;.*)/$1Ⓢ$2/
-      - xform/^(\w+?)[iu]ang(;.*)/$1Ⓓ$2/
-      - xform/^(\w+?)eng(;.*)/$1Ⓖ$2/
-      - xform/^(\w+?)en(;.*)/$1Ⓕ$2/
-      - xform/^(\w+?)ang(;.*)/$1Ⓗ$2/
-      - xform/^(\w+?)ian(;.*)/$1Ⓜ$2/
-      - xform/^(\w+?)an(;.*)/$1Ⓙ$2/
-      - xform/^(\w+?)iao(;.*)/$1Ⓒ$2/
-      - xform/^(\w+?)ao(;.*)/$1Ⓚ$2/
-      - xform/^(\w+?)ai(;.*)/$1Ⓛ$2/
-      - xform/^(\w+?)ei(;.*)/$1Ⓩ$2/
-      - xform/^(\w+?)ie(;.*)/$1Ⓧ$2/
-      - xform/^(\w+?)ui(;.*)/$1Ⓥ$2/
-      - derive/Ⓣ/Ⓥ/
-      - xform/^(\w+?)ou(;.*)/$1Ⓑ$2/
-      - xform/^(\w+?)ing(;.*)/$1;$2/
-      - xform/^(\w+?)in(;.*)/$1Ⓝ$2/
-      - xform/^(\w+?)[iu]a(;.*)/$1Ⓦ$2/
-      - xform/^sh/Ⓤ/
-      - xform/^ch/Ⓘ/
-      - xform/^zh/Ⓥ/
-      - xlit/ⓆⓌⓇⓉⓎⓊⒾⓄⓅⓈⒹⒻⒼⒽⓂⒿⒸⓀⓁⓏⓍⓋⒷⓃ/qwrtyuiopsdfghmjcklzxvbn/
-  
-  搜狗双拼: 
-    __append:
-      - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
-      - xform/ń|ň|ǹ/en/ 
-      - xform/^ng(;.*)/eng$1/
-      - xform/ńg|ňg|ǹg/eng/
-      - derive/^([jqxy])u(;.*)$/$1v$2/
-      - derive/^([aoe].*)(;.*)$/o$1$2/
-      - xform/^([ae])(.*)(;.*)$/$1$1$2$3/
-      - xform/^(\w+?)iu(;.*)$/$1Ⓠ$2/
-      - xform/^(\w+?)[iu]a(;.*)$/$1Ⓦ$2/
-      - xform/^(\w+?)er(;.*)$/$1Ⓡ$2/
-      - xform/^(\w+?)[uv]an(;.*)$/$1Ⓡ$2/
-      - xform/^(\w+?)[uv]e(;.*)$/$1Ⓣ$2/
-      - xform/^(\w+?)v(;.*)$/$1Ⓨ$2/
-      - xform/^(\w+?)uai(;.*)$/$1Ⓨ$2/
-      - xform/^(\w+?)uo(;.*)$/$1Ⓞ$2/
-      - xform/^(\w+?)[uv]n(;.*)$/$1Ⓟ$2/
-      - xform/^(\w+?)i?ong(;.*)$/$1Ⓢ$2/
-      - xform/^(\w+?)[iu]ang(;.*)$/$1Ⓓ$2/
-      - xform/^(\w+?)en(;.*)$/$1Ⓕ$2/
-      - xform/^(\w+?)eng(;.*)$/$1Ⓖ$2/
-      - xform/^(\w+?)ang(;.*)$/$1Ⓗ$2/
-      - xform/^(\w+?)ian(;.*)$/$1Ⓜ$2/
-      - xform/^(\w+?)an(;.*)$/$1Ⓙ$2/
-      - xform/^(\w+?)iao(;.*)$/$1Ⓒ$2/
-      - xform/^(\w+?)ao(;.*)$/$1Ⓚ$2/
-      - xform/^(\w+?)ai(;.*)$/$1Ⓛ$2/
-      - xform/^(\w+?)ei(;.*)$/$1Ⓩ$2/
-      - xform/^(\w+?)ie(;.*)$/$1Ⓧ$2/
-      - xform/^(\w+?)ui(;.*)$/$1Ⓥ$2/
-      - xform/^(\w+?)ou(;.*)$/$1Ⓑ$2/
-      - xform/^(\w+?)in(;.*)$/$1Ⓝ$2/
-      - xform/^(\w+?)ing(;.*)$/$1;$2/
-      - xform/^sh/Ⓤ/
-      - xform/^ch/Ⓘ/
-      - xform/^zh/Ⓥ/
-      - xlit/ⓆⓌⓇⓉⓎⓊⒾⓄⓅⓈⒹⒻⒼⒽⓂⒿⒸⓀⓁⓏⓍⓋⒷⓃ/qwrtyuiopsdfghmjcklzxvbn/
-  
-  
-  ###############################################以下是用来配置不同的辅助码方案###############################################
-  fuzhu_kong: 
-    __append: 
-      - "xform/;.*$//"
-  fuzhu_moqi:    ##############################位于词库第一个分号后
-    __append:
-      - xform|^(.*?);(.*?);.*$|$1;$2|         #匹配当前方案，转换为 双拼；辅助码（当前方案）的形式
-      - derive|^(.+);.*$|$1| # 纯双拼的情况
-      - derive|^(.+);(\w)(\w).*$|$1$2| # 双拼+一位辅助码的情况
-      - derive|^(.+);(\w)(\w).*$|$1[$2| # 双拼+[一位辅助码的情况
-      - abbrev|^(.+);(\w)(\w).*$|$1$2$3| # 双拼+2位辅助码的情况，abbrev类型不可以整句内输入2位辅助码，必须加o或/
-      - derive|^(.+);(\w)(\w).*$|$1$2$3/| # 整句模式下，输入syff/ 出单字 增强单字性能
-      - derive|^(.+);(\w)(\w).*$|$1$2$3o| # 整句模式下，输入syffo 出单字 增强单字性能
-  fuzhu_flypy:   ####################################位于词库第二个分号后
-    __append:
-      - xform|^(.*?);.*?;(.*?);.*$|$1;$2|  #匹配当前方案，转换为 双拼；辅助码（当前方案）的形式
-      - derive|^(.+);.*$|$1| # 纯双拼的情况
-      - derive|^(.+);(\w)(\w).*$|$1$2| # 双拼+一位辅助码的情况
-      - derive|^(.+);(\w)(\w).*$|$1[$2| # 双拼+[一位辅助码的情况
-      - abbrev|^(.+);(\w)(\w).*$|$1$2$3| # 双拼+2位辅助码的情况，abbrev类型不可以整句内输入2位辅助码，必须加o或/
-      - derive|^(.+);(\w)(\w).*$|$1$2$3/| # 整句模式下，输入syff/ 出单字 增强单字性能
-      - derive|^(.+);(\w)(\w).*$|$1$2$3o| # 整句模式下，输入syffo 出单字 增强单字性能
-        #分号后面第二组辅助码
-      - derive/^(.+);.*?,(\w\w).*$/$1$2/
-      - derive/^(.+);.*?,(\w)(\w).*$/$1[$2/
-      - abbrev/^(.+);.*?,(\w)(\w).*$/$1$2$3/
-      - derive|^(.+);.*?,(\w)(\w).*$|$1$2$3/|
-      - derive|^(.+);.*?,(\w)(\w).*$|$1$2$3o|
-  fuzhu_zrm:  ########################################位于词库第三个分号后
-    __append:
+      #以下是辅助码部分
       - xform|^(.*?);.*?;.*?;(.*?);.*$|$1;$2|  #匹配当前方案，转换为 双拼；辅助码（当前方案）的形式
   #以下是双拼运算
       - derive/^(.+);.*$/$1/ # 纯双拼的情况
   #分号后面第一组辅助码
-      - derive/^(.+);(\w)(\w).*$/$1$2/ # 双拼+一位辅助码的情况
+      - abbrev/^(.+);(\w)(\w).*$/$1$2/ # 双拼+一位辅助码的情况
       - derive/^(.+);(\w)(\w).*$/$1[$2/ # 双拼+[一位辅助码的情况
-      - abbrev/^(.+);(\w)(\w).*$/$1$2$3/ # 双拼+2位辅助码的情况，abbrev类型不可以整句内输入2位辅助码，必须加/
-      - derive|^(.+);(\w)(\w).*$|$1$2$3/| # 整句模式下，输入syff/ 出单字 增强单字性能
-      - derive|^(.+);(\w)(\w).*$|$1$2$3o| # 整句模式下，输入syffo 出单字 增强单字性能
+      - derive/^(.+);(\w)(\w).*$/$1$2$3/ # 双拼+2位辅助码的情况
+      - derive|^(.+);(\w)(\w).*$|$1$2$3/| # 双拼+2位辅助码+/
+      - derive|^(.+);(\w)(\w).*$|$1$2$3o| # 双拼+2位辅助码+o
   #分号后面第二组辅助码
-      - derive/^(.+);.*?,(\w\w).*$/$1$2/
+      - abbrev/^(.+);.*?,(\w\w).*$/$1$2/
       - derive/^(.+);.*?,(\w)(\w).*$/$1[$2/
-      - abbrev/^(.+);.*?,(\w)(\w).*$/$1$2$3/
+      - derive/^(.+);.*?,(\w)(\w).*$/$1$2$3/
       - derive|^(.+);.*?,(\w)(\w).*$|$1$2$3/|
-      - derive|^(.+);.*?,(\w)(\w).*$|$1$2$3o|
+      - derive/^(.+);.*?,(\w)(\w).*$/$1$2$3o/
   #分号后面第三组辅助码
-      - derive/^(.+);.*?,.*?,(\w\w).*$/$1$2/
+      - abbrev/^(.+);.*?,.*?,(\w\w).*$/$1$2/
       - derive/^(.+);.*?,.*?,(\w)(\w).*$/$1[$2/
-      - abbrev/^(.+);.*?,.*?,(\w)(\w).*$/$1$2$3/
+      - derive/^(.+);.*?,.*?,(\w)(\w).*$/$1$2$3/
       - derive|^(.+);.*?,.*?,(\w)(\w).*$|$1$2$3/|
-      - derive|^(.+);.*?,.*?,(\w)(\w).*$|$1$2$3o|
+      - derive/^(.+);.*?,.*?,(\w)(\w).*$/$1$2$3o/
   #分号后面第四组辅助码
-      - derive/^(.+);.*?,.*?,.*?,(\w)(\w).*$/$1$2/ 
+      - abbrev/^(.+);.*?,.*?,.*?,(\w)(\w).*$/$1$2/ 
       - derive/^(.+);.*?,.*?,.*?,(\w)(\w).*$/$1[$2/
-      - abbrev/^(.+);.*?,.*?,.*?,(\w)(\w).*$/$1$2$3/
+      - derive/^(.+);.*?,.*?,.*?,(\w)(\w).*$/$1$2$3/
       - derive|^(.+);.*?,.*?,.*?,(\w)(\w).*$|$1$2$3/|
-      - derive|^(.+);.*?,.*?,.*?,(\w)(\w).*$|$1$2$3o|
+      - derive/^(.+);.*?,.*?,.*?,(\w)(\w).*$/$1$2$3o/
   #特殊优化：部分音节字极少，几乎不参与构词，则提升对应四码字的优先级，仅对自然码双拼有效，其他双拼方案需作对应修改）
       - derive/^(.+);(bd|dw|df|dw|yl|rw|fs|iw)$/$1$2/
       - derive/^(.+);.*?,(bd|dw|df|dw|yl|rw|fs|iw)$/$1$2/
       - derive/^(.+);.*?,.*?,(bd|dw|df|dw|yl|rw|fs|iw)$/$1$2/
       - derive/^(.+);.*?,.*?,.*?,(bd|dw|df|dw|yl|rw|fs|iw)$/$1$2/
-  fuzhu_jdh:    ########################################位于词库第四个分号后
-    __append:  
-      - xform|^(.*?);.*?;.*?;.*?;(.*?);.*$|$1;$2|
-      - derive|^(.+);.*$|$1| # 纯双拼的情况
-      - derive|^(.+);(\w)(\w).*$|$1$2| # 双拼+一位辅助码的情况
-      - derive|^(.+);(\w)(\w).*$|$1[$2| # 双拼+[一位辅助码的情况
-      - abbrev|^(.+);(\w)(\w).*$|$1$2$3| # 双拼+2位辅助码的情况，abbrev类型不可以整句内输入2位辅助码，必须加o或/
-      - derive|^(.+);(\w)(\w).*$|$1$2$3/| # 整句模式下，输入syff/ 出单字 增强单字性能
-      - derive|^(.+);(\w)(\w).*$|$1$2$3o| # 整句模式下，输入syffo 出单字 增强单字性能
-  
-  fuzhu_cj:   ########################################位于词库第五个分号后
-    __append:
-      - xform|^(.*?);.*?;.*?;.*?;.*?;(.*?);.*$|$1;$2|
-      - derive|^(.+);.*$|$1| # 纯双拼的情况
-      - derive|^(.+);(\w)(\w).*$|$1$2| # 双拼+一位辅助码的情况
-      - derive|^(.+);(\w)(\w).*$|$1[$2| # 双拼+[一位辅助码的情况
-      - abbrev|^(.+);(\w)(\w).*$|$1$2$3| # 双拼+2位辅助码的情况，abbrev类型不可以整句内输入2位辅助码，必须加o或/
-      - derive|^(.+);(\w)(\w).*$|$1$2$3/| # 整句模式下，输入syff/ 出单字 增强单字性能
-      - derive|^(.+);(\w)(\w).*$|$1$2$3o| # 整句模式下，输入syffo 出单字 增强单字性能
-  
-  
-  fuzhu_tiger:    ########################################位于词库第六个分号后
-    __append:
-      - xform|^(.*?);.*?;.*?;.*?;.*?;.*?;(.*?);.*$|$1;$2|
-      - derive|^(.+);.*$|$1| # 纯双拼的情况
-      - derive|^(.+);(\w)(\w).*$|$1$2| # 双拼+一位辅助码的情况
-      - derive|^(.+);(\w)(\w).*$|$1[$2| # 双拼+[一位辅助码的情况
-      - abbrev|^(.+);(\w)(\w).*$|$1$2$3| # 双拼+2位辅助码的情况，abbrev类型不可以整句内输入2位辅助码，必须加o或/
-      - derive|^(.+);(\w)(\w).*$|$1$2$3/| # 整句模式下，输入syff/ 出单字 增强单字性能
-      - derive|^(.+);(\w)(\w).*$|$1$2$3o| # 整句模式下，输入syffo 出单字 增强单字性能
-  #分号后面第二组辅助码
-      - derive/^(.+);.*?,(\w\w).*$/$1$2/
-      - derive/^(.+);.*?,(\w)(\w).*$/$1[$2/
-      - abbrev/^(.+);.*?,(\w)(\w).*$/$1$2$3/
-      - derive|^(.+);.*?,(\w)(\w).*$|$1$2$3/|
-      - derive|^(.+);.*?,(\w)(\w).*$|$1$2$3o|
-  
-  fuzhu_wubi:     ########################################位于词库第七个分号后
-    __append:
-      - xform|^(.*?);.*?;.*?;.*?;.*?;.*?;.*?;(.*?);.*$|$1;$2|
-      - derive|^(.+);.*$|$1| # 纯双拼的情况
-      - derive|^(.+);(\w)(\w).*$|$1$2| # 双拼+一位辅助码的情况
-      - derive|^(.+);(\w)(\w).*$|$1[$2| # 双拼+[一位辅助码的情况
-      - abbrev|^(.+);(\w)(\w).*$|$1$2$3| # 双拼+2位辅助码的情况，abbrev类型不可以整句内输入2位辅助码，必须加o或/
-      - derive|^(.+);(\w)(\w).*$|$1$2$3/| # 整句模式下，输入syff/ 出单字 增强单字性能
-      - derive|^(.+);(\w)(\w).*$|$1$2$3o| # 整句模式下，输入syffo 出单字 增强单字性能
-  
-  fuzhu_hanxin:     ########################################位于词库第八个分号后
-    __append:
-      - xform|^(.*?);.*?;.*?;.*?;.*?;.*?;.*?;.*?;(.*?);.*$|$1;$2|
-      - derive|^(.+);.*$|$1| # 纯双拼的情况
-      - derive|^(.+);(\w)(\w).*$|$1$2| # 双拼+一位辅助码的情况
-      - derive|^(.+);(\w)(\w).*$|$1[$2| # 双拼+[一位辅助码的情况
-      - abbrev|^(.+);(\w)(\w).*$|$1$2$3| # 双拼+2位辅助码的情况，abbrev类型不可以整句内输入2位辅助码，必须加o或/
-      - derive|^(.+);(\w)(\w).*$|$1$2$3/| # 整句模式下，输入syff/ 出单字 增强单字性能
-      - derive|^(.+);(\w)(\w).*$|$1$2$3o| # 整句模式下，输入syffo 出单字 增强单字性能
-  mohuyin:
-    __append:
-      # 模糊音 可选择性开启
-      - derive/^z([a-z])/v$1/
-      - derive/^c([a-z])/i$1/
-      - derive/^s([a-z])/u$1/
-      - derive/^v([a-z])/z$1/
-      - derive/^i([a-z])/c$1/
-      - derive/^u([a-z])/s$1/
-  
+      - erase/^(.+);(.+)$/    # 删除原始编码加速检索
   user_dict_set:
     dictionary: wanxiang
     initial_quality: 0
