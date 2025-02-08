@@ -3,7 +3,7 @@
 #https://github.com/amzxyz/RIME-LMDG
 ---
 name: chars
-version: "2025-02-08 19:07"
+version: "2025-02-09 01:33"
 sort: by_weight
 ...
 啊	a;kk;kk;ka;oj;rr;dz;kb;kk;	915
@@ -45424,12 +45424,12 @@ sort: by_weight
 于	yú;au;al;aa;ss;md;fn;gf;av;	827
 语	yǔ;yk;yk;yw;co;ir;sd;yg;yk;	808
 预	yù;yy;sr;yy;pm;no;iw;cb;vr;	778
+雨	yǔ;ad;ad;ad;yy;my;tv;fg;ad;	776
 育	yù;wo;wo;os,wo;il;yb;bv;yc;wo;	774
 域	yù;ta;ta;th;gd,ga;gm;gf;fa;tg;	757
 鱼	yú;da;da;da;qq;nm;wv;qg;ea;	756
 遇	yù;zd;zy;zy;vq;yb;qu;jm;zd;	730
 余	yú;rm;rh;rb,rd,rh;ef;od;jx;wt;rx;	720
-雨	yǔ;ad;ad;ad;yy;my;tv;fg;ad;	711
 与	yù;va;aa;aa;dd;ym;ff;gn;aa;	700
 玉	yù;wd;wd;ad,wd;aa;mi;ni;gy;wd;	700
 娱	yú;nt;nt;nw;yx;vk;bm;vk;nt;	687
@@ -50768,6 +50768,7 @@ sort: by_weight
 昨	zuó;ov;ov;ov;vu;as;ow;jt;ov;	699
 佐	zuǒ;rg;rg;rz;xp;om;ju;wd;rg;	627
 琢	zuó;wu;wn;wd,wi;ah;mo;ni;ge;wn;	539
+作	zuō;rv;rv;rv;xu;os;jw;wt;rv;	521
 咗	zuo;kg;kg;kz;op;rm;du;kd;kg;	496
 唑	zuò;kr;kt;kz;og;rg;dg;kw;kt;	490
 祚	zuò;pv;pv;uv;hu;is;fw;py;pv;	444
