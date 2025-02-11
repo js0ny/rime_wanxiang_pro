@@ -44,9 +44,9 @@ function M.init(env)
         fuzhu_type = config:get_string("pro_comment_format/fuzhu_type") or ""
     }
 end
--- **判断是否为字母或数字**
+-- **判断是否为字母或数字和特定符号**
 local function is_alnum(text)
-    return text:match("^[%w%s%p]+$") ~= nil
+    return text:match("^[%w%s%.%-_%']+$") ~= nil
 end
 
 -- **主逻辑**
