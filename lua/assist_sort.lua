@@ -46,7 +46,7 @@ function M.init(env)
 end
 -- **判断是否为字母或数字**
 local function is_alnum(text)
-    return text:match("^[%w]+$") ~= nil
+    return text:match("^[%w%s%p]+$") ~= nil
 end
 
 -- **主逻辑**
