@@ -44,9 +44,10 @@ function M.init(env)
         fuzhu_type = config:get_string("pro_comment_format/fuzhu_type") or ""
     }
 end
+
 -- **判断是否为字母或数字和特定符号**
 local function is_alnum(text)
-    return text:match("^[%w%s%.%-_%']+$") ~= nil
+    return text:match("^[%w%s%.%-_%']+.*$") ~= nil  
 end
 
 -- **主逻辑**
@@ -54,8 +55,24 @@ function M.func(input, env)
     local input_code = env.engine.context.input
     local input_len = utf8.len(input_code)
 
+    -- **缓存候选项，防止迭代器被消耗**
+    local first_cand = nil
+    local candidates = {}
+
+    for cand in input:iter() do
+        if not first_cand then first_cand = cand end
+        table.insert(candidates, cand)
+    end
+
+    -- **如果输入码长 > 4，则直接输出默认排序**
     if input_len > 4 then
-        for cand in input:iter() do yield(cand) end
+        for _, cand in ipairs(candidates) do yield(cand) end
+        return
+    end
+
+    -- **如果第一个候选是字母/数字，则直接返回默认候选**
+    if first_cand and is_alnum(first_cand.text) then
+        for _, cand in ipairs(candidates) do yield(cand) end
         return
     end
 
@@ -63,7 +80,7 @@ function M.func(input, env)
 
     if input_len >= 3 and input_len <= 4 then
         -- **分类候选**
-        for cand in input:iter() do
+        for _, cand in ipairs(candidates) do
             if is_alnum(cand.text) then
                 table.insert(alnum_cands, cand)
             elseif utf8.len(cand.text) == 1 then
@@ -78,15 +95,14 @@ function M.func(input, env)
         local has_match = false
         local moved, reordered = {}, {}
 
-        -- **如果 `other_cands` 为空，说明所有非字母数字候选都是单字，除了英文只有单字就认为是编码只有1-2个，
-		--这样来替代造词的时候先提交一个字后面的码长缩短导致的基于输入码长度的逻辑失效（显示的2码，但是input码长还是4），可能出现造词第二个字抛出英文单词影响体验**
+        -- **如果 `other_cands` 为空，说明所有非字母数字候选都是单字**
         if #other_cands == 0 then
             for _, cand in ipairs(single_char_cands) do
-                table.insert(moved, cand)  -- 视为匹配成功的候选
+                table.insert(moved, cand)
                 has_match = true
             end
         else
-            -- **正常匹配 `first` 和 `full`**
+            -- **匹配 `first` 和 `full`**
             for _, cand in ipairs(single_char_cands) do
                 local full, first = M.run_fuzhu(cand, env, cand.comment or "")
                 local matched = false
@@ -131,10 +147,9 @@ function M.func(input, env)
         end
 
     else  -- **处理 input_len < 3 的情况**
-        -- **清空分类表**
         single_char_cands, alnum_cands, other_cands = {}, {}, {}
 
-        for cand in input:iter() do
+        for _, cand in ipairs(candidates) do
             local len = utf8.len(cand.text)
             if is_alnum(cand.text) then
                 table.insert(alnum_cands, cand)
