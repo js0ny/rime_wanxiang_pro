@@ -3,8 +3,8 @@
     "segmentation": {
         "type": "mmseg",
         "dict": {
-            "type": "ocd2",
-            "file": "moqi_chaifen.ocd2"
+            "type": "text",
+            "file": "moqi_chaifen.txt"
         }
     },
     "conversion_chain": [
@@ -13,8 +13,8 @@
                 "type": "group",
                 "dicts": [
                     {
-                        "type": "ocd2",
-                        "file": "moqi_chaifen.ocd2"
+                        "type": "text",
+                        "file": "moqi_chaifen.txt"
                     }
                 ]
             }
