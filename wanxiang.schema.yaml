@@ -243,22 +243,6 @@ traditionalize:
   tips: none               # 转换提示: all 都显示 | char 仅单字显示 | none 不显示。
   tags: [ abc, number, gregorian_to_lunar ]  # 限制在对应 tag，不对其他如反查的内容做简繁转换
 
-
-# 标点符号
-# punctuator 下面有三个子项：
-#   full_shape 全角标点映射
-#   half_shape 半角标点映射
-#   symbols    Rime 的预设配置是以 '/' 前缀开头输出一系列字符，自定义的 symbols_v.yaml 修改成了 'V' 开头。
-punctuator:
-  digit_separators: ":,."  #数字分隔符
-  full_shape:
-    __include: default:/punctuator/full_shape  # 从 default.yaml 导入配置
-  half_shape:
-    __include: default:/punctuator/half_shape  # 从 default.yaml 导入配置
-  symbols:
-    __include: symbols:/symbols         # 从 symbols_v.yaml 导入配置
-
-
 # 部件拆字反查
 radical_lookup:
   tag: radical_lookup
@@ -300,6 +284,19 @@ recognizer:
     calculator: "^V.*$"                 #计算器功能引导
     quick_symbol: "^'.*$"  # 快符引导，例如输入'q 后自动上屏快速符号，双击''重复上屏符号
     quick_text: "^;.*$"  # 双击;;重复上屏汉字和字母
+
+# 标点符号
+# punctuator 下面有三个子项：
+# 设置为一个映射，就自动上屏；设置为多个映射，如 '/' : [ '/', ÷ ] 则进行复选。
+#   full_shape: 全角没改，使用预设值
+#   half_shape: 标点符号全部直接上屏，和 macOS 自带输入法的区别是
+#              '|' 是半角的，
+#              '~' 是半角的，
+#              '`'（反引号）没有改成 '·'（间隔号）。
+#   symbols    Rime 的预设配置是以 '/' 前缀开头输出一系列字符，自定义的修改 symbols.yaml
+punctuator:
+  digit_separators: ":,."  #数字分隔符
+  __include: symbols:/symbol_table         # 从 symbols.yaml 导入配置
 
 # 从 default 继承快捷键
 key_binder:
@@ -741,7 +738,7 @@ octagram:
     grammar:
       language: wanxiang-lts-zh-hans
       collocation_max_length: 8         #命中的最长词组
-      collocation_min_length: 3         #命中的最短词组，搭配词频健全的词库时候应当最小值设为3避开2字高频词
+      collocation_min_length: 2         #命中的最短词组，搭配词频健全的词库时候应当最小值设为3避开2字高频词
       collocation_penalty: -10          #默认-12 对常见搭配词组施加的惩罚值。较高的负值会降低这些搭配被选中的概率，防止过于频繁地出现某些固定搭配。
       non_collocation_penalty: -12      #默认-12 对非搭配词组施加的惩罚值。较高的负值会降低非搭配词组被选中的概率，避免不合逻辑或不常见的词组组合。
       weak_collocation_penalty: -24     #默认-24 对弱搭配词组施加的惩罚值。保持默认值通常是为了有效过滤掉不太常见但仍然合理的词组组合。
