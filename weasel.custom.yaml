@@ -1,0 +1,112 @@
+# encoding: utf-8
+
+patch:
+  style:
+    color_scheme: Win11Dark
+  app_options:
+    # ascii_mode: 西文模式
+    # vim_mode: # vim 模式, Esc <C-c> <C-[> 切换到 ascii 状态
+    # inline_preedit: 没看懂
+    cmd.exe:
+      ascii_mode: true
+    conhost.exe:
+      ascii_mode: true
+    windowsterminal.exe:
+      ascii_mode: true
+      vim_mode: true
+    wt.exe:
+      ascii_mode: true
+      vim_mode: true
+    pwsh.exe:
+      ascii_mode: true
+      vim_mode: true
+    powershell.exe:
+      ascii_mode: true
+    neovide.exe:
+      ascii_mode: true
+      vim_mode: true
+    wezterm.exe:
+      ascii_mode: true
+      vim_mode: true
+    wezterm-gui.exe:
+      ascii_mode: true
+      vim_mode: true
+    obsidian.exe:
+      ascii_mode: true
+      vim_mode: true
+    code.exe:
+      ascii_mode: true
+      vim_mode: true
+    emacs.exe:
+      ascii_mode: true
+      vim_mode: true
+    cursor.exe:
+      ascii_mode: true
+      vim_mode: true
+    dopus.exe:
+      ascii_mode: true
+    alacritty.exe:
+      ascii_mode: true
+      vim_mode: true
+    sumatrapdf.exe:
+      ascii_mode: true
+    rider64.exe:
+      ascii_mode: true
+      vim_mode: true
+    pycharm64.exe:
+      ascii_mode: true
+      vim_mode: true
+    clion64.exe:
+      ascii_mode: true
+      vim_mode: true
+    idea64.exe:
+      ascii_mode: true
+      vim_mode: true
+    goland64.exe:
+      ascii_mode: true
+      vim_mode: true
+  style:
+    font_face: "JetBrainsMono Nerd Font, LXGW WenKai"
+    label_font_face: "JetBrainsMono Nerd Font, LXGW WenKai"
+    comment_font_face: "JetBrainsMono Nerd Font, LXGW WenKai"
+    font_point: 12
+    label_font_point: 12
+    comment_font_point: 12
+    mark_text: "|"
+    # https://gist.github.com/blueset/419ebc8edc33f972f1ab4192655a0bc1
+    color_scheme: Win11Dark
+    horizontal: true
+    layout:
+      border_width: 0
+      margin_x: 6
+      margin_y: 6
+      spacing: 12
+      candidate_spacing: 12
+      hilite_spacing: 4
+      hilite_padding: 4
+      hilited_corner_radius: 4
+      corner_radius: 4
+  preset_color_schemes:
+    Win11Dark:
+      name: "Windows 11 Dark"
+      author: "Eana Hufwe"
+      color_format: "rgba"
+      text_color: 0xffffffff
+      back_color: 0x2C2C2Cff
+      border_color: 0x2C2C2Cff
+      shadow_color: 0x00000000
+      candidate_text_color: 0xffffff
+      candidate_back_color: 0x00000000
+      candidate_shadow_color: 0x00000000
+      label_color: 0xc5c5c5
+      comment_text_color: 0xc5c5c5
+      hilited_text_color: 0xffffff
+      hilited_back_color: 0x383838ff
+      hilited_shadow_color: 0x00000000
+      hilited_candidate_text_color: 0xffffff
+      hilited_candidate_back_color: 0x383838
+      hilited_candidate_shadow_color: 0x00000000
+      hilited_comment_text_color: 0xcccccc
+      hilited_mark_color: 0x4CC1FE
+      prevpage_color: 0xc5c5c5ff
+      nextpage_color: 0xc5c5c5ff
